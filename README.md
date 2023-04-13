@@ -1,6 +1,6 @@
-# crm_client
+# Lens Supply - Frontend
 
-### Compile and Hot-Reload for Development
+## ¿Cómo iniciar el proyecto?
 
 1. Clonar el repositorio.
 
@@ -10,3 +10,8 @@ npm install
 
 npm run dev
 ```
+
+## Servidor
+Em este repositorio se encuentra subida la parte del cliente, para ver la parte del servidor debe dirigirse al siguiente repositorio:
+
+https://github.com/NGiudi/crm_server
