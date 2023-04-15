@@ -41,8 +41,8 @@
           userLogin({ email: this.email, password: this.password })
             .then((user) => {
               if (user) {
-                //TODO: ingresar el usuario en en la home.
                 this.showError = false;
+                this.$router.push('/home');
               } else {
                 this.showError = true;
               }
@@ -62,7 +62,7 @@
         userAuthentication({ user_id: userID, token: userToken })
           .then((user) => {
             if (user) {
-              //TODO: ingresar el usuario en en la home.
+              this.$router.push('/home');
             }
           })
       }

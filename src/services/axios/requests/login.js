@@ -7,7 +7,8 @@ export const userLogin = (data) => {
 			localStorage.setItem("crm_user_token", user.token);
 			localStorage.setItem("crm_user_id", user.id);
 			return res.data;
-		});
+		})
+		.catch((err) => console.error(err));
 };
 
 export const userAuthentication = (data) => {
@@ -19,5 +20,6 @@ export const userAuthentication = (data) => {
 			}
 
 			return res.data.user;
-		});
+		})
+		.catch((err) => console.error(err));
 };
