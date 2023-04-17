@@ -1,3 +1,7 @@
+<script setup>
+  import { userLogout } from "../../../services/axios/requests/login";
+</script>
+
 <template>
   <nav class="layout-sidebar">
     <button class="layout-button" @click="handleClick" name="/home">
@@ -6,6 +10,10 @@
 
     <button class="layout-button" @click="handleClick" name="/users">
       Usuarios
+    </button>
+
+    <button class="layout-button" @click="logout">
+      Cerrar sesión
     </button>
   </nav>
 </template>
@@ -16,6 +24,11 @@
       handleClick(e) {
         this.$router.push(e.target.name);
       },
+      logout() {
+        userLogout().then(() => {
+          this.$router.push("/login");
+        });
+      }
     }
   }
 </script>

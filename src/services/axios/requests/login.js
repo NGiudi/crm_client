@@ -11,6 +11,19 @@ export const userLogin = (data) => {
 		.catch((err) => console.error(err));
 };
 
+export const userLogout = () => {
+	const userId = localStorage.getItem("crm_user_id");
+
+	const data = { user_id: userId };
+
+	return axiosClient.post(`/users/logout`, data)
+		.then(() => {
+			localStorage.removeItem("crm_user_id");
+			localStorage.removeItem("crm_user_token");
+		})
+		.catch((err) => console.error(err));
+};
+
 export const userAuthentication = (data) => {
 	return axiosClient.post("/users/authentication", data)
 		.then((res) => {
