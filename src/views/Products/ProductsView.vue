@@ -2,14 +2,14 @@
   import AppLayout from "../../components/layout/AppLayout/AppLayout.vue";
   import PaginatedDataTable from "../../components/layout/PaginatedDataTable.vue";
 
-  import { getUsers } from "../../services/axios/requests/users";
+  import { getProducts } from "../../services/axios/requests/products";
 </script>
 
 <template>
   <AppLayout>
     <PaginatedDataTable
       :data="dataTable"
-      :fields="userFields"
+      :fields="productFields"
       @onChangePage="getPage"
       :pages="statsTable.pages"
     />
@@ -22,32 +22,24 @@
       return {
         dataTable: [],
         statsTable: {},
-        userFields: [
+        productFields: [
           {
-            key: "names",
+            key: "name",
             name: "Nombre",
           },
           {
-            key: "last_name",
-            name: "Apellido",
+            key: "brand_name",
+            name: "Marca",
           },
-          {
-            key: "email",
-            name: "Email",
-          },
-          {
-            key: "role",
-            name: "Rol",
-          }
         ],
       };
     },
     methods: {
       getPage(page) {
         const queryObj = { page };
-
-        getUsers(queryObj).then((res) => {
-          this.dataTable = res.users;
+ 
+        getProducts(queryObj).then((res) => {
+          this.dataTable = res.products;
           this.statsTable = res.stats; 
         });
       },

@@ -8,6 +8,10 @@
       Home
     </button>
 
+    <button class="layout-button" @click="handleClick" name="/products">
+      Productos
+    </button>
+
     <button class="layout-button" @click="handleClick" name="/users">
       Usuarios
     </button>
