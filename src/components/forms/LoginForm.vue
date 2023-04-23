@@ -4,7 +4,7 @@
 
 <template>
   <form @submit.prevent="submitForm">
-    <label class="input-label mb-5">
+    <label class="input-label mb-4">
       Email
       <input class="input" v-model="email" />
     </label>
@@ -20,7 +20,7 @@
       </p>
     </div>
 
-    <button class="button">Iniciar sesión</button>
+    <button class="button button-solid w-100">Iniciar sesión</button>
   </form>
 </template>
 
@@ -42,7 +42,7 @@
             .then((user) => {
               if (user) {
                 this.showError = false;
-                this.$router.push('/home');
+                this.$router.push("/home");
               } else {
                 this.showError = true;
               }
@@ -62,7 +62,7 @@
         userAuthentication({ user_id: userID, token: userToken })
           .then((user) => {
             if (user) {
-              this.$router.push('/home');
+              this.$router.push("/home");
             }
           })
       }

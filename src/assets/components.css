@@ -1,17 +1,28 @@
 /* start - BUTTON */
 .button {
-  background-color: var(--color-primary);
   border: none;
-  border-radius: 4px;
   box-sizing: border-box;
-  color: white;
-  margin-top: 4px;
-  padding: 8px 12px;
-  width: 100%;
 }
 
-.button:hover {
+.button-solid {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  padding: 8px 12px;
+}
+
+.button-solid:hover {
   background-color: var(--color-button-hover);
+  cursor: pointer;
+}
+
+.button-ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.button-ghost:hover {
+  color: var(--color-primary);
   cursor: pointer;
 }
 /* end - BUTTON */
@@ -22,7 +33,7 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: white;
+  color: var(--color-text-primary);
   margin-top: 4px;
   padding: 8px 12px;
   width: 100%;
