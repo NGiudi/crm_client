@@ -18,7 +18,7 @@
 
 .button-ghost {
   background-color: transparent;
-  color: var(--color-text-primary);
+  color: var(--bs-body-color);
 }
 
 .button-ghost:hover {
@@ -43,3 +43,16 @@
   display: block;
 }
 /* end - INPUT */
+
+/* start - Text */
+.title {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.subtitle {
+  color: var(--bs-body-color);
+  font-size: 24px;
+  line-height: 32px;
+}
+/* end - Text */

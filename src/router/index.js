@@ -24,10 +24,15 @@ const router = createRouter({
     },
     {
       path: "/products",
-      name: "products",
-
+      name: "productsList",
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/Products/ProductsView.vue")
+      component: () => import("../views/Products/ProductsListView.vue")
+    },
+    {
+      path: "/products/:id",
+      name: "productDetail",
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/Products/ProductDetailView.vue")
     }
   ]
 })
