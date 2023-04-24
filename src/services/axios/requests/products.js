@@ -3,6 +3,11 @@ import axiosClient from "../axiosClient";
 import { getRequestHeaders } from "../../../utils/requestUtils";
 import { getVariants } from "./variants";
 
+/**
+  Se hace la request al backend para obtener una página de productos.
+
+	@param {object} queryObj objecto que contiene la página que se quiere traer.
+*/
 export const getProducts = (queryObj) => {
   const queryString = new  URLSearchParams(queryObj).toString();
   const config = getRequestHeaders();
@@ -12,6 +17,11 @@ export const getProducts = (queryObj) => {
 		.catch((err) => console.error(err));
 };
 
+/**
+  Se hace la request al backend para obtener la información de un producto.
+
+	@param {number} id id del producto.
+*/
 export const getProduct = (id) => {
   const config = getRequestHeaders();
 
@@ -20,6 +30,12 @@ export const getProduct = (id) => {
 		.catch((err) => console.error(err));
 };
 
+/**
+  Se hace la request al backend para obtener la información de un producto 
+  junto con las variantes del mismo.
+
+	@param {number} id id del producto.
+*/
 export const getProductWithVariants = (id) => {
   const variantQueryObj = {
     product_id: id,

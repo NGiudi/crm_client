@@ -1,5 +1,11 @@
 import axiosClient from "../axiosClient";
 
+/**
+  Se hace la request al backend para loguear un usuario y 
+	guarda el token en el localstorage.
+
+	@param {object} data objecto que contiene el email y la contraseña del usuario.
+*/
 export const userLogin = (data) => {
 	return axiosClient.post("/users/login", data)
 		.then((res) => {
@@ -11,6 +17,10 @@ export const userLogin = (data) => {
 		.catch((err) => console.error(err));
 };
 
+/**
+  Se hace la request al backend para desloguear un usuario y 
+	elimina el token guardado en el localstorage.
+*/
 export const userLogout = () => {
 	const userId = localStorage.getItem("crm_user_id");
 
@@ -24,6 +34,12 @@ export const userLogout = () => {
 		.catch((err) => console.error(err));
 };
 
+/**
+  Se hace la request al backend para autenticar un usuario por medio del
+	token almacenado en el localstorage.
+
+	@param {object} data objecto que contiene el token y el id del usuario.
+*/
 export const userAuthentication = (data) => {
 	return axiosClient.post("/users/authentication", data)
 		.then((res) => {
