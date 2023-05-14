@@ -1,18 +1,18 @@
 <script setup>
-  import LoginForm from "../../components/forms/LoginForm.vue";
+  import LoginForm from "../components/forms/LoginForm.vue";
 </script>
 
 <template>
   <main class="login-wrapper">
     <div class="login-panel">
-      <h2 class="login-title">Bienvenidos</h2>
+      <h2 class="login-title">Bienvenido</h2>
 
-      <LoginForm/>
+      <LoginForm />
     </div>
   </main>
 </template>
 
-<style>
+<style scoped>
   .login-panel {
     background-color: var(--color-backgroud-components);
     border-radius: 8px;

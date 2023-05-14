@@ -1,5 +1,8 @@
 <script setup>
-  import { userAuthentication, userLogin } from "../../services/axios/requests/login";
+  import { userAuthentication, userLogin } from "../../services/axios/login";
+  import { useLoggedUserStore } from "../../stores/loggedUser";
+
+  import { LS_KEYS, PATHS } from "../../assets/constants/constants";
 </script>
 
 <template>
@@ -35,36 +38,43 @@
     },
     methods: {
       submitForm() {
-        if (!this.email || !this.password) {
+        const { loginUser } = useLoggedUserStore();
+
+        if (!this.email.trim() || !this.password.trim()) {
           this.showError = true;
         } else {
           userLogin({ email: this.email, password: this.password })
             .then((user) => {
-              if (user) {
-                this.showError = false;
-                this.$router.push("/home");
-              } else {
-                this.showError = true;
-              }
+              this.showError = false;
+              loginUser(user);
+              this.$router.push(PATHS.productsList);
             })
-            .catch(() => {
+            .catch((err) => {
               this.showError = true;
+              console.error(err);
             });
         }
       }
     },
     mounted() {
+      const { loginUser } = useLoggedUserStore();
+
       // la función se ejecuta cuando el componente se monte en el DOM.
-      const userID = localStorage.getItem("crm_user_id");
-      const userToken = localStorage.getItem("crm_user_token");
+      const userID = localStorage.getItem(LS_KEYS.userId);
+      const userToken = localStorage.getItem(LS_KEYS.userToken);
 
       if (userID && userToken) {
         userAuthentication({ user_id: userID, token: userToken })
           .then((user) => {
-            if (user) {
-              this.$router.push("/home");
-            }
+            loginUser(user);
+            this.$router.push(PATHS.productsList);
           })
+          .catch((err) => {
+				    localStorage.removeItem(LS_KEYS.userId);
+				    localStorage.removeItem(LS_KEYS.userToken);
+
+            console.error(err);
+          });
       }
     },
   };

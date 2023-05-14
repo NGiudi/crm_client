@@ -1,17 +1,35 @@
-# Lens Supply - Frontend
+# crm_client
 
-## ¿Cómo iniciar el proyecto?
+This template should help get you started developing with Vue 3 in Vite.
 
-1. Clonar el repositorio.
+## Recommended IDE Setup
 
-2. Instalar dependecias e iniciar el servidor
-```
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
 npm install
+```
 
+### Compile and Hot-Reload for Development
+
+```sh
 npm run dev
 ```
 
-## Servidor
-Em este repositorio se encuentra subida la parte del cliente, para ver la parte del servidor debe dirigirse al siguiente repositorio:
+### Compile and Minify for Production
 
-https://github.com/NGiudi/crm_server
+```sh
+npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
