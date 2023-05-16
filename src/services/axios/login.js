@@ -3,7 +3,7 @@ import axios from "axios";
 import { LS_KEYS } from "../../assets/constants/constants";
 
 const axiosClient = axios.create({
-	baseURL: import.meta.env.VITE_API_URL, 
+	baseURL: `${import.meta.env.VITE_API_URL}/users`, 
 });
 
 /**
@@ -13,7 +13,7 @@ const axiosClient = axios.create({
 	@param {object} data objecto que contiene el token y el id del usuario.
 */
 export const userAuthentication = (data) => {
-	return axiosClient.post("/users/authentication", data)
+	return axiosClient.post("/authentication", data)
 		.then((res) => res.data.user);
 };
 
@@ -24,7 +24,7 @@ export const userAuthentication = (data) => {
 	@param {object} data objecto que contiene el email y la contraseña del usuario.
 */
 export const userLogin = (data) => {
-	return axiosClient.post("/users/login", data)
+	return axiosClient.post("/login", data)
 		.then((res) => {
 			const user = res.data.user;
 			localStorage.setItem(LS_KEYS.userId, user.id);
@@ -42,7 +42,7 @@ export const userLogout = () => {
 
 	const data = { user_id: userId };
 
-	return axiosClient.post(`/users/logout`, data)
+	return axiosClient.post(`/logout`, data)
 		.then(() => {
 			localStorage.removeItem(LS_KEYS.userId);
 			localStorage.removeItem(LS_KEYS.userToken);

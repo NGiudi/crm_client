@@ -1,10 +1,11 @@
 <script setup>
   import AppLayout from '../components/AppLayout/AppLayout.vue';
+  import ProductsList from '../components/lists/ProductsList/ProductsList.vue';
 </script>
 
 <template>
   <AppLayout>
-    <p>soy la pantalla de productos</p>
+    <ProductsList />
   </AppLayout>
 </template>
 
