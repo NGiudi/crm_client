@@ -27,13 +27,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const userStore = useLoggedUserStore();
-  const { isLoggedIn } = storeToRefs(userStore);
-
-  console.log(isLoggedIn);
+  const { isLogged } = storeToRefs(userStore);
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log(isLoggedIn);
-    if (!isLoggedIn) {
+    if (!isLogged.value) {
       next({ path: PATHS.login });
     } else {
       next();
