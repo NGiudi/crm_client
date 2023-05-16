@@ -1,35 +1,29 @@
-# crm_client
+# CRM client
 
-This template should help get you started developing with Vue 3 in Vite.
+## Resumen
 
-## Recommended IDE Setup
+Crear una aplicación donde los empleados de una distribuidora de lentes de contactos puedan agregar productos, actualizar el stock y aplicar descuentos. Además de crear ventas que disminuye el stock.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Tareas
 
-## Customize configuration
+- [Vista] Crear pantalla de login.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Lógica] Logueo automático.
 
-## Project Setup
+- [Lógca] Deslogueo de usuario.
 
-```sh
-npm install
-```
+- [Vista] Listado de productos.
 
-### Compile and Hot-Reload for Development
+- [Vista] Home: tiene un saludo personalizado con el nombre del usuario y contiene estadisticas de la empresa. Cantidad de ventas y cantidad de productos.
 
-```sh
-npm run dev
-```
+- [Vista] Listado de ventas.
 
-### Compile and Minify for Production
+- [Vista] Vista de creacion de ventas: vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
 
-```sh
-npm run build
-```
+- [Logica] Formulario de edición de producto, en esta instancia podemos editar el valor del descuentos.
 
-### Lint with [ESLint](https://eslint.org/)
+- [Vista] Ver el detalle de los productos.
 
-```sh
-npm run lint
-```
+- [Vista] Detalles de ventas.
+
+- [Vista] 404: Not Found.

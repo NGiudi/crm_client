@@ -1,5 +1,7 @@
 <script setup>
-  /* import { userLogout } from "../../../services/axios/requests/login"; */
+  import { useLoggedUserStore } from "../../stores/loggedUser";
+  
+  import { userLogout } from "../../services/axios/login";
 
   import { PATHS } from "../../assets/constants/constants";
 </script>
@@ -30,11 +32,15 @@
       handleClick(e) {
         this.$router.push(e.target.name);
       },
-      /* logout() {
+      logout() {
+        const { logoutUser } = useLoggedUserStore();
+
         userLogout().then(() => {
-          this.$router.push("/login");
-        });
-      } */
+          logoutUser();
+          this.$router.push(PATHS.login);
+        })
+        .catch((err) => console.error(err));
+      }
     }
   }
 </script>

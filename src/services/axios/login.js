@@ -32,3 +32,19 @@ export const userLogin = (data) => {
 			return res.data;
 		})
 };
+
+/**
+  Se hace la request al backend para desloguear un usuario y 
+	elimina el token guardado en el localstorage.
+*/
+export const userLogout = () => {
+	const userId = localStorage.getItem(LS_KEYS.userId);
+
+	const data = { user_id: userId };
+
+	return axiosClient.post(`/users/logout`, data)
+		.then(() => {
+			localStorage.removeItem(LS_KEYS.userId);
+			localStorage.removeItem(LS_KEYS.userToken);
+		});
+};
