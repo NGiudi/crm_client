@@ -17,7 +17,15 @@ const router = createRouter({
     {
       path: PATHS.productsList,
       name: "products-list",
-      component: () => import("../pages/ProductListPage.vue"),
+      component: () => import("../pages/products/ProductListPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
+      path: PATHS.productsDetail,
+      name: "product-detail",
+      component: () => import("../pages/products/ProductDetailPage.vue"),
       meta: {
         requiresAuth: true,
       }

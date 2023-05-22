@@ -5,6 +5,7 @@ export const LS_KEYS = {
 
 export const PATHS = {
   login: "/",
+  productsDetail: "/products/:id",
   productsList: "/products",
   salesList: "/sales",
   usersList: "/users",
