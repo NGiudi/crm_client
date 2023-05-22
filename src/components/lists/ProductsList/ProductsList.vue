@@ -1,7 +1,8 @@
 <script setup>
-  import { getProducts } from "../../../services/axios/products";
-
   import Pagination from "../Pagination.vue";
+  
+  import { getProducts } from "../../../services/axios/products";
+  import { PATHS } from "../../../assets/constants/constants";
 </script>
 
 <template>
@@ -19,7 +20,7 @@
     </thead>
     
     <tbody>
-      <tr v-for="product in data">
+      <tr @click="handleRowClick(product.id)" v-for="(product, idx) in data" :key="idx">
         <td>{{ product.name }}</td>
 
         <td>{{ product.brand_name }}</td>
@@ -62,9 +63,24 @@
         })
         .catch((err) => console.error(err));
       },
+      handleRowClick(id) {
+        this.$router.push(`${PATHS.productsList}/${id}`);
+      },
     },
     mounted() {
       this.getPage(1);
     },
   };
 </script>
+
+<style scoped>
+  tbody tr:hover {
+    background-color: var(--color-backgroud-components);
+    cursor: pointer;
+  }
+
+  tbody tr:active {
+    background-color: var(--color-background-inputs);
+    cursor: pointer;
+  }
+</style>
