@@ -6,24 +6,35 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ## Tareas
 
-- [Vista] Crear pantalla de login.
+### [Vista] Crear pantalla de login.
+  Listo.
 
-- [Lógica] Logueo automático.
+### [Lógica] Logueo automático.
+  Listo.
 
-- [Lógca] Deslogueo de usuario.
+### [Lógca] Deslogueo de usuario.
+  Listo.
 
-- [Vista] Listado de productos.
+### [Vista] Listado de productos.
+  Listo.
 
-- [Vista] Home: tiene un saludo personalizado con el nombre del usuario y contiene estadisticas de la empresa. Cantidad de ventas y cantidad de productos.
+### [Vista] Ver el detalle de los productos.
+  - Va a mostrar los datos del producto.
+ 
+  - En la parte superior vamos a poner un botón para editar el contenido. Cuando se apreta se cambian los textos por inputs y te permite editar los valores.
 
-- [Vista] Listado de ventas.
+  - Vamos a tener un boton para eliminar el producto.
 
-- [Vista] Vista de creacion de ventas: vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
+  - Aqui vamos a poder editar el descuento del producto.
 
-- [Logica] Formulario de edición de producto, en esta instancia podemos editar el valor del descuentos.
+### [Vista] Home: tiene un saludo personalizado con el nombre del usuario y contiene estadisticas de la empresa. Cantidad de ventas y cantidad de productos.
 
-- [Vista] Ver el detalle de los productos.
+### [Vista] Listado de ventas.
 
-- [Vista] Detalles de ventas.
+### [Vista] Vista de creacion de ventas: vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
 
-- [Vista] 404: Not Found.
+### [Logica] Formulario de edición de producto, en esta instancia podemos editar el valor del descuentos.
+
+### [Vista] Detalles de ventas.
+
+### [Vista] 404: Not Found.

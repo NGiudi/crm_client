@@ -1,5 +1,5 @@
 <script setup>
-  import { userAuthentication, userLogin } from "../../services/axios/login";
+  import { userAuthentication, userLogin } from "../../services/axios/loginService";
   import { useLoggedUserStore } from "../../stores/loggedUser";
 
   import { LS_KEYS, PATHS } from "../../assets/constants/constants";
@@ -45,7 +45,6 @@
         } else {
           userLogin({ email: this.email, password: this.password })
             .then((user) => {
-              this.showError = false;
               loginUser(user);
               this.$router.push(PATHS.productsList);
             })

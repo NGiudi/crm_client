@@ -1,7 +1,7 @@
 <script setup>
   import { useLoggedUserStore } from "../../stores/loggedUser";
   
-  import { userLogout } from "../../services/axios/login";
+  import { userLogout } from "../../services/axios/loginService";
 
   import { PATHS } from "../../assets/constants/constants";
 </script>

@@ -15,6 +15,14 @@ const router = createRouter({
       component: () => import("../pages/LoginPage.vue"),
     },
     {
+      path: PATHS.productsDetail,
+      name: "product-detail",
+      component: () => import("../pages/products/ProductDetailPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
       path: PATHS.productsList,
       name: "products-list",
       component: () => import("../pages/products/ProductListPage.vue"),
@@ -22,14 +30,6 @@ const router = createRouter({
         requiresAuth: true,
       }
     },
-    {
-      path: PATHS.productsDetail,
-      name: "product-detail",
-      component: () => import("../pages/products/ProductDetailPage.vue"),
-      meta: {
-        requiresAuth: true,
-      }
-    }
   ]
 });
 

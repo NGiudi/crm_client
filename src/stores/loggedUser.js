@@ -13,8 +13,7 @@ export const useLoggedUserStore = defineStore("loggedUser", {
       this.isLogged = true;
     },
     logoutUser() {
-      this.user = null;
-      this.isLogged = false;
+      this.$reset();
     }
   },
 });
