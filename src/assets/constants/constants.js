@@ -8,5 +8,6 @@ export const PATHS = {
   productsDetail: "/products/:id",
   productsList: "/products",
   salesList: "/sales",
+  salesNew: "/sales/new",
   usersList: "/users",
 };
