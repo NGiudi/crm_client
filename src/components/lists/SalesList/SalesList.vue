@@ -24,6 +24,7 @@
 </template>
 
 <script>
+// TODO A MODIFICAR
   export default {
     data() {
       return {
