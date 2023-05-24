@@ -1,6 +1,9 @@
 <script setup>
   import { PATHS } from '../../assets/constants/constants';
-import AppLayout from '../../components/AppLayout/AppLayout.vue';
+  import AppLayout from '../../components/AppLayout/AppLayout.vue';
+  import SalesList from '../../components/lists/SalesList/SalesList.vue';
+
+
 </script>
 
 <template>
@@ -10,6 +13,18 @@ import AppLayout from '../../components/AppLayout/AppLayout.vue';
         Nueva venta
       </button>
     </div>
+      <SalesList />
+<!--
+  usuario que realizo la venta, <br/>
+  precio total, <br/>
+  numero cliente+nombre, <br/>
+
+
+  en el detalle se ve el listado de productos
+
+-->
+
+
   </AppLayout>
 </template>
 
