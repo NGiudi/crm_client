@@ -37,7 +37,7 @@
           <!-- TODO: guardar valores en constantes -->
           <span v-if="product.stock === 0">Sin stock</span>
           <span v-else-if="product.stock <= 10">Stock bajo</span>
-          <span v-else>-</span>
+          <span v-else>Normal</span>
         </th>
       </tr>
     </tbody>
@@ -91,15 +91,15 @@
   }
 
   .sinStock {
-    color: indianred;
+    color: var(--color-text-danger);
   }
 
   .bajoStock {
-    color: orange;
+    color: var(--color-text-warning);
   }
 
   .stockValido {
-    color: #64dd17;
+    color: var(--color-primary);
   }
 
 </style>

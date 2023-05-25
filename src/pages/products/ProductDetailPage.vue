@@ -1,67 +1,80 @@
 <script setup>
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
-
+  import axios from "axios";
   import { getProduct } from "../../services/axios/productsService";
 </script>
 
 <template>
   <AppLayout>
     <div v-if="isEditing">
-      <div class="align-items-center d-flex justify-content-between">
-        <input :value="this.data.name" />
-
-        <div>
-          <button @click="handleEditClick">Cancelar</button>
-
-          <button>Eliminar</button>
-        </div>
+      <div class="mb-3 text-end">
+        <button @click="editProduct" class="btn btn-primary mx-2">Guardar</button>
+        <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
+      </div>
+      <div class="mb-3">
+        <label>Producto</label>
+        <input v-model="data.name" class="form-control" />
       </div>
 
-      <label>
-        Marca
-        <input :value="this.brand_name" />
-      </label>
+      <div class="mb-3">
+        <label>Marca</label>
+        <input v-model="data.brand_name" class="form-control" />
+      </div>
 
-      <label>
-        Descripción
-        <input :value="this.data.description" />
-      </label>
+      <div class="mb-3">
+        <label>Descripción</label>
+        <input v-model="data.description" class="form-control" />
+      </div>
 
-      <label>
-        Precio unitario
-        <input :value="this.data.price" />
-      </label>
+      <div class="mb-3">
+        <label>Precio unitario</label>
+        <input v-model="data.price" class="form-control" />
+      </div>
 
-      <label>
-        Stock
-        <input :value="this.data.stock" />
-      </label>
+      <div class="mb-3">
+        <label>Stock</label>
+        <input v-model="data.stock" class="form-control" />
+      </div>
     </div>
 
     <div v-else>
-      <div class="align-items-center d-flex justify-content-between">
-        <h1>{{ this.data.name }}</h1>
-
-        <div>
-          <button @click="handleEditClick">Editar</button>
-        </div>
+      <div class="text-end mb-3">
+        <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
+        <button @click="deleteProduct" class="btn btn-danger">Eliminar</button>
+      </div>
+      <div class="d-flex justify-content-center mb-3">
+        <h1>{{ data.name }}</h1>
       </div>
 
-      <h2>{{ this.brand_name }}</h2>
+      <div class="container d-flex justify-content-between align-items-center">
+        <h3>Marca</h3>
+        <h3 class="color-secondary">{{ data.brand_name }}</h3>
+      </div>
 
-      <p>{{ this.data.description }}</p>
+      <div class="container d-flex justify-content-between align-items-center">
+        <h3>Descripcion</h3>
+        <h3 class="color-secondary" v-if="data.description">{{ data.description }}</h3>
+        <h3 class="color-secondary" v-else>--</h3>
+      </div>
 
-      <p>{{ this.data.price }}</p>
+      <div class="container d-flex justify-content-between align-items-center">
+        <h3>Precio</h3>
+        <h3 class="color-secondary">$ {{ data.price }}</h3>
+      </div>
 
-      <p>{{ this.data.stock }}</p>
-
+      <div class="container d-flex justify-content-between align-items-center">
+        <h3>Stock</h3>
+        <h3 class="color-secondary">{{ data.stock }}</h3>
+      </div>
     </div>
 
-    <p class="timestamp">
-      Última actualización: {{ new Date(this.data.updatedAt).toLocaleString("es-AR") }}
+    <p class="mt-5 color-secondary center">
+      Última actualización: {{ new Date(data.updatedAt).toLocaleString("es-AR") }}
     </p>
   </AppLayout>
 </template>
+
+
 
 <script>
   export default {
@@ -69,6 +82,8 @@
       return {
         data: {},
         isEditing: false,
+        url: "http://localhost:3005/products",
+        token: localStorage.getItem('crm_user_token')
       };
     },
     methods: {
@@ -80,7 +95,36 @@
       },
       handleEditClick() {
         this.isEditing = !this.isEditing;
-      }
+      },
+      editProduct() {
+        const updatedProduct = {...this.data}
+        axios.put(`${this.url}/${this.data.id}`, updatedProduct, {
+          headers: {
+            Authorization: this.token,
+          },
+        })
+          .then(() => {
+            console.log("Producto actualizado");
+            this.isEditing = false;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      deleteProduct() {
+        axios.delete(`${this.url}/${this.data.id}`, {
+          headers: {
+            Authorization: this.token,
+          },
+        })
+          .then(() => {
+            console.log("Producto borrado")
+            this.$router.push("/products");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     },
     mounted() {
       const { id } = this.$route.params;
@@ -90,8 +134,17 @@
 </script>
 
 <style scoped>
-  .timestamp {
+  .container{
+    max-width: 750px;
+  }
+  .btn-primary{
+    background-color: var(--color-primary);
+    border: none;
+  }
+  .color-secondary{
     color: var(--color-secondary);
+  }
+  .center {
     text-align: center;
   }
 </style>
