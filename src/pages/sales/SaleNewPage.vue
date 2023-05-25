@@ -1,5 +1,8 @@
 <script setup>
+  import { useProductCartStore } from "../../stores/productCartStore";
+
   import AppLayout from '../../components/AppLayout/AppLayout.vue';
+  import ProductCartList from '../../components/lists/ProductsList/ProductCartList.vue';
   import ProductsSearch from "../../components/searchs/ProductsSearch/ProductsSearch.vue";
 </script>
 
@@ -11,27 +14,7 @@
       Productos Agregados a la venta
     </h2>
 
-    <!-- TODO: agregar esta tabla en un componente aparte -->
-    <table class="table">
-      <tbody>
-        <table class="table">
-          <tbody>
-            <tr :key="idx" v-for="(product, idx) in productsInCart">
-  
-              <td>{{ product.name }}</td>
-  
-              <td>{{ product.brand_name }}</td>
-            
-              <th>{{ product.stock }}</th>
-              
-              <th class="text-end">
-                <input type="number" />
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </tbody>
-    </table>
+    <ProductCartList />
   </AppLayout>
 </template>
 
@@ -44,9 +27,11 @@
     },
     methods: {
       handleAddProduct(product) {
-        this.productsInCart.push(product);
+        const { addProduct } = useProductCartStore();
+        addProduct(product);
       },
     },
+    components: { ProductCartList }
   }
 </script>
 

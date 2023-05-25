@@ -1,6 +1,6 @@
 <script setup>
   import { userAuthentication, userLogin } from "../../services/axios/loginService";
-  import { useLoggedUserStore } from "../../stores/loggedUser";
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
 
   import { LS_KEYS, PATHS } from "../../assets/constants/constants";
 </script>

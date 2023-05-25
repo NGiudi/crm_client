@@ -1,5 +1,5 @@
 <script setup>
-  import { useLoggedUserStore } from "../../stores/loggedUser";
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
   
   import { userLogout } from "../../services/axios/loginService";
 

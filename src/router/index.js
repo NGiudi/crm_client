@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import { useLoggedUserStore } from "../stores/loggedUser";  
+import { useLoggedUserStore } from "../stores/loggedUserStore";  
 import { storeToRefs } from "pinia";
 
 import { PATHS } from "../assets/constants/constants";
