@@ -8,13 +8,24 @@
 
 <template>
   <AppLayout>
-    <ProductsSearch @onAddProduct="handleAddProduct"/>
+    <label class="label">
+      Cliente
+      <input class="input" />
+    </label>
 
-    <h2 class="mt-4 subtitle">
-      Productos Agregados a la venta
+    <h2 class="my-4 subtitle">
+      Productos agregados a la venta
     </h2>
 
+    <ProductsSearch class="mb-3" @onAddProduct="handleAddProduct"/>
+
     <ProductCartList />
+
+    <div class="mt-5 text-end">
+      <button class="button button-solid">
+        Finalizar venta
+      </button>
+    </div>
   </AppLayout>
 </template>
 

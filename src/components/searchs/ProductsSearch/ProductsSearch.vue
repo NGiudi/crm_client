@@ -12,6 +12,7 @@
       class="input"
       @focus="openPanel"
       @input="handleInput"
+      placeholder="Buscar producto..."
       v-model="inputValue"
     />
 

@@ -9,9 +9,16 @@
           <td>{{ product.brand_name }}</td>
         
           <th>{{ product.stock }}</th>
+
+          <th>{{ product.price }}</th>
           
           <th class="text-end">
-            <button @click="handleAddProduct(product)">Aggregar</button>
+            <button
+              @click="handleAddProduct(product)"
+              :disabled="product.stock <= 0"
+            >
+              Agregar
+            </button>
           </th>
         </tr>
       </tbody>

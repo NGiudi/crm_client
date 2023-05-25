@@ -55,4 +55,9 @@
   font-size: 24px;
   line-height: 32px;
 }
+
+.label {
+  color: var(--bs-body-color);
+  width: 100%;
+}
 /* end - Text */
