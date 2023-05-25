@@ -39,6 +39,14 @@ const router = createRouter({
       }
     },
     {
+      path: PATHS.salesNew,
+      name: "sales-new",
+      component: () => import("../pages/sales/SaleNewPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
       path: PATHS.usersList,
       name: "users-list",
       component: () => import("../pages/users/UsersListPage.vue"),
