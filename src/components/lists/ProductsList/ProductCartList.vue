@@ -9,22 +9,31 @@
 
 <template>
   <table class="table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Marca</th>
+        <th>Stock</th>
+        <th>Precio unitario</th>
+        <th>Cantidad</th>
+        <th></th>
+      </tr>
+    </thead>
+
     <tbody>
       <tr :key="idx" v-for="(product, idx) in products">
-
         <td>{{ product.name }}</td>
-
         <td>{{ product.brand_name }}</td>
-      
-        <th>{{ product.stock }}</th>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.price }}</td>
         
-        <th class="text-end">
+        <td>
           <input type="number" v-model="product.quantity" />
-        </th>
+        </td>
 
-        <th class="text-end">
+        <td class="text-end">
           <button @click="handleDeleteProduct(product)">Eliminar</button>
-        </th>
+        </td>
       </tr>
     </tbody>
   </table>

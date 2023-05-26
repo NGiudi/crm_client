@@ -1,10 +1,15 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
+
+import { useLoggedUserStore } from "./loggedUserStore";
+
+const loggedUserStore = useLoggedUserStore();
+const { user } = storeToRefs(loggedUserStore);
 
 export const useProductCartStore = defineStore("productCart", {
   state: () => {
     return {
       products: [],
-      client: {},
+      client: "",
     };
   },
   actions: {
@@ -18,8 +23,22 @@ export const useProductCartStore = defineStore("productCart", {
         this.products.push(product);
       }
     },
+    createRequestObject() {
+      return {
+        client: this.client,
+        products: this.products.map((p) => ({
+          quantity: p.quantity,
+          price: p.price,
+          product_id: p.id,
+        })),
+        seller_id: user.value.id,
+      };
+    },
     deleteProduct(id) {
       this.products = this.products.filter((p) => p.id !== id); 
-    }
+    },
+    setClient(client) {
+      this.client = client;
+    },
   },
 });
