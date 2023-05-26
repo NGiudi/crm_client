@@ -20,7 +20,7 @@
       Usuarios
     </button>
 
-    <button class="layout-button" @click="logout">
+    <button class="layout-button signout" @click="logout">
       Cerrar sesión
     </button>
   </nav>
@@ -53,6 +53,13 @@
     color: white;
     padding: 16px 24px;
     width: 100%;
+  }
+
+  .signout {
+    color:  var(--color-text-danger);
+  }
+  .signout:hover {
+    color: white;
   }
 
     .layout-button:hover {

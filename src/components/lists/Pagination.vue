@@ -52,3 +52,13 @@
     props: ["pages", "page"],
   }
 </script>
+
+<style scoped>
+  .page-link{
+    color: var(--color-primary);
+  }
+  .page-link.active{
+    background-color: var(--color-primary);
+    color: white;
+  }
+</style>

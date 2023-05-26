@@ -15,6 +15,9 @@
   --color-text-error: #e74c3c;
 
   --color-button-hover: hsla(160, 100%, 37%, 0.8);
+
+  --color-text-warning: #f0d362;
+  --color-text-danger: #e27569;
 }
 
 
