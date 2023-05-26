@@ -23,7 +23,7 @@
         <th scope="col">Total</th>
       </tr>
     </thead>
-    </table>
+    
 
         <tbody>
       <tr 
@@ -33,13 +33,16 @@
       >
         <td>{{ sale.id }}</td>
 
-        <!--<td>{{ sale.brand_name }}</td>-->
+        <td>{{ sale.seller_id }}</td>
+
+        <td>{{ sale.client }}</td>
         
-        <th>{{ sale.price }}</th>
+        <td>{{ sale.price }}</td>
         
 
       </tr>
     </tbody>
+    </table>
 
       <!--<Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>-->
 
@@ -90,17 +93,4 @@
     background-color: var(--color-background-inputs);
     cursor: pointer;
   }
-
-  .sinStock {
-    color: indianred;
-  }
-
-  .bajoStock {
-    color: orange;
-  }
-
-  .stockValido {
-    color: #64dd17;
-  }
-
 </style>
