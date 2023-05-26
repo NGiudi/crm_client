@@ -31,14 +31,14 @@
 
         <td>{{ product.brand_name }}</td>
         
-        <th>{{ product.stock }}</th>
+        <td>{{ product.stock }}</td>
         
-        <th>
+        <td>
           <!-- TODO: guardar valores en constantes -->
           <span v-if="product.stock === 0">Sin stock</span>
           <span v-else-if="product.stock <= 10">Stock bajo</span>
           <span v-else>-</span>
-        </th>
+        </td>
       </tr>
     </tbody>
   </table>
