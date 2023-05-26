@@ -5,9 +5,6 @@
 
   import { PATHS } from "../../../assets/constants/constants";
 
-
-
-
 </script>
 
   <template>
@@ -33,13 +30,12 @@
       >
         <td>{{ sale.id }}</td>
 
-        <td>{{ sale.seller_id }}</td>
+        <td>{{ sale.user?.names + " " + sale.user?.last_name }}</td>
 
         <td>{{ sale.client }}</td>
         
         <td>{{ sale.price }}</td>
         
-
       </tr>
     </tbody>
     </table>
