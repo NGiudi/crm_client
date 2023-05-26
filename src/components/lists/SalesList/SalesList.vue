@@ -1,6 +1,12 @@
 <script setup>
   import Pagination from "../Pagination.vue";
 
+  import { getSales } from "../../../services/axios/salesService";
+
+  import { PATHS } from "../../../assets/constants/constants";
+
+
+
 
 </script>
 
@@ -19,9 +25,26 @@
     </thead>
     </table>
 
-      <Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>
+        <tbody>
+      <tr 
+        @click="handleRowClick(sale.id)" 
+        :key="idx"
+        v-for="(sale, idx) in data" 
+      >
+        <td>{{ sale.id }}</td>
+
+        <!--<td>{{ sale.brand_name }}</td>-->
+        
+        <th>{{ sale.price }}</th>
+        
+
+      </tr>
+    </tbody>
+
+      <!--<Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>-->
 
 </template>
+
 
 <script>
 // TODO A MODIFICAR
@@ -41,19 +64,19 @@
           page: page,
         };
  
-        getProducts(queryObj).then((res) => {
-          this.data = res.products;
+        getSales(queryObj).then((res) => {
+          this.data = res.sales;
           this.stats = res.stats; 
         })
         .catch((err) => console.error(err));
       },
       handleRowClick(id) {
-        this.$router.push(`${PATHS.productsList}/${id}`);
+        this.$router.push(`${PATHS.salesList}/${id}`);
       },
     },
-/*     mounted() {
+    mounted() {
       this.getPage(1);
-    }, */
+    },
   };
 </script>
 
