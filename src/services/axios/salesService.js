@@ -30,7 +30,7 @@ export const getSales = (queryObj) => {
   
 	const queryString = new  URLSearchParams(queryObj).toString();
   
-	return axiosClient.get(`/sales?${queryString}`, {
+	return axiosClient.get(`?${queryString}`, {
 	  headers: { "Authorization": userToken},
 	})   
 	  .then((res) => res.data);
@@ -44,7 +44,7 @@ export const getSales = (queryObj) => {
 export const getSale = (id) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
   
-	return axiosClient.get(`/sales/${id}`, {
+	return axiosClient.get(`/${id}`, {
 	  headers: { "Authorization": userToken},
 	})
 	  .then((res) => res.data);
