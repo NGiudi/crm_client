@@ -6,6 +6,8 @@
   import ProductsSearch from "../../components/searchs/ProductsSearch/ProductsSearch.vue";
 
   import { createSale } from "../../services/axios/salesService";
+
+  import { PATHS } from "../../assets/constants/constants";
 </script>
 
 <template>
@@ -51,7 +53,9 @@
         const { createRequestObject } = useProductCartStore();
         const saleObj = createRequestObject();
 
-        createSale(saleObj).then((res) => console.log(res)); //TODO: terminar esto.
+        createSale(saleObj).then((sale) => {
+          this.$router.push(`${PATHS.salesList}/${sale.id}`);
+        });
       },
     }
   }
