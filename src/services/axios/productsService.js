@@ -35,3 +35,31 @@ export const getProduct = (id) => {
   })
     .then((res) => res.data);
 };
+
+/**
+  Se hace la request al backend para borrar el producto.
+
+	@param {number} id id del producto a borrar.
+*/
+export const deleteProduct = async (id) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+
+  return axiosClient.delete(`/products/${id}`, {
+    headers: { "Authorization": userToken},
+  })
+    .then(() => console.log("Producto borrado"));
+}
+
+/**
+  Se hace la request al backend para editar el producto.
+
+	@param {number} id id del producto a borrar.
+  @param {object} updatedData datos del producto modificado.
+*/
+export const modifyProduct = async (id, updatedData) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+  return axiosClient.put(`/products/${id}`, updatedData, {
+    headers: { "Authorization": userToken},
+  })
+    .then(() => console.log("Producto modificado"));
+}
