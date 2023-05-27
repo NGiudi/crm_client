@@ -66,7 +66,8 @@
         userAuthentication({ user_id: userID, token: userToken })
           .then((user) => {
             loginUser(user);
-            this.$router.push(PATHS.productsList);
+            const { redirect_url } = this.$router.currentRoute.value.query;
+            this.$router.push(redirect_url);
           })
           .catch((err) => {
 				    localStorage.removeItem(LS_KEYS.userId);
