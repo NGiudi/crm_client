@@ -31,6 +31,14 @@ const router = createRouter({
       }
     },
     {
+      path: PATHS.salesDetail,
+      name: "sales-detail",
+      component: () => import("../pages/sales/SalesDetailPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
       path: PATHS.salesList,
       name: "sales-list",
       component: () => import("../pages/sales/SalesListPage.vue"),
