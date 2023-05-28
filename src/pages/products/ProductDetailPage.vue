@@ -1,6 +1,8 @@
 <script setup>
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
   import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/productsService";
+  import Swal from 'sweetalert2/dist/sweetalert2.js';
+  import 'sweetalert2/dist/sweetalert2.css';
 </script>
 
 <template>
@@ -39,7 +41,7 @@
     <div v-else>
       <div class="text-end mb-3">
         <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
-        <button @click="removeProduct" class="btn btn-danger">Eliminar</button>
+        <button @click="confirmRemoveProduct" class="btn btn-danger">Eliminar</button>
       </div>
       <div class="d-flex justify-content-center mb-3">
         <h1>{{ data.name }}</h1>
@@ -102,6 +104,23 @@
         this.updatedData = {...this.data}
         await modifyProduct(this.data.id, this.updatedData)
         this.isEditing = false;
+      },
+      confirmRemoveProduct() {
+        Swal.fire({
+          background: 'var(--color-background-inputs)',
+          color: 'white',
+          icon: 'error',
+          title: `¿Eliminar ${this.data.name}?`,
+          text: 'Esta acción no se puede deshacer',
+          showCancelButton: true,
+          confirmButtonText: 'Eliminar',
+          confirmButtonColor: "#DC3545",
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.removeProduct();
+          }
+        });
       },
       async removeProduct() {
         await deleteProduct(this.data.id)
