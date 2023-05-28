@@ -1,14 +1,14 @@
 <script setup>
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
   import axios from "axios";
-  import { getProduct } from "../../services/axios/productsService";
+  import { getUser } from "../../services/axios/usersService";
 </script>
 
 <template>
   <AppLayout>
     <div v-if="isEditing">
       <div class="mb-3 text-end">
-        <button @click="editProduct" class="btn btn-primary mx-2">Guardar</button>
+        <button @click="editUser" class="btn btn-primary mx-2">Guardar</button>
         <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="mb-3">
@@ -47,24 +47,24 @@
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
-        <h3>Marca</h3>
-        <h3 class="color-secondary">{{ data.brand_name }}</h3>
+        <h3>Nombre completo</h3>
+        <h3 class="color-secondary">{{ data.names +" "+ data.last_name}}</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
-        <h3>Descripcion</h3>
-        <h3 class="color-secondary" v-if="data.description">{{ data.description }}</h3>
+        <h3>Mail</h3>
+        <h3 class="color-secondary" v-if="data.email">{{ data.email }}</h3>
         <h3 class="color-secondary" v-else>--</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
-        <h3>Precio</h3>
-        <h3 class="color-secondary">$ {{ data.price }}</h3>
+        <h3>Rol</h3>
+        <h3 class="color-secondary">{{ data.role }}</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
-        <h3>Stock</h3>
-        <h3 class="color-secondary">{{ data.stock }}</h3>
+        <h3>Teléfono</h3>
+        <h3 class="color-secondary">{{ data.phone }}</h3>
       </div>
     </div>
 
@@ -87,8 +87,8 @@
       };
     },
     methods: {
-      getProduct(id) {
-        getProduct(id).then((res) => {
+      getUser(id) {
+        getUser(id).then((res) => {
           this.data = res;
         })
           .catch((err) => console.error(err));
@@ -96,30 +96,30 @@
       handleEditClick() {
         this.isEditing = !this.isEditing;
       },
-      editProduct() {
-        const updatedProduct = {...this.data}
-        axios.put(`${this.url}/${this.data.id}`, updatedProduct, {
+      editUser() {
+        const updatedUser = {...this.data}
+        axios.put(`${this.url}/${this.data.id}`, updatedUser, {
           headers: {
             Authorization: this.token,
           },
         })
           .then(() => {
-            console.log("Producto actualizado");
+            console.log("usuario actualizado");
             this.isEditing = false;
           })
           .catch((err) => {
             console.log(err);
           });
       },
-      deleteProduct() {
+      deleteUser() {
         axios.delete(`${this.url}/${this.data.id}`, {
           headers: {
             Authorization: this.token,
           },
         })
           .then(() => {
-            console.log("Producto borrado")
-            this.$router.push("/products");
+            console.log("Usuario borrado")
+            this.$router.push("/users");
           })
           .catch((err) => {
             console.log(err);
@@ -128,7 +128,7 @@
     },
     mounted() {
       const { id } = this.$route.params;
-      this.getProduct(id);
+      this.getUser(id);
     },
   }
 </script>
