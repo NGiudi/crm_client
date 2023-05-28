@@ -82,8 +82,6 @@
         data: {},
         updatedData: {},
         isEditing: false,
-        url: "http://localhost:3005/products",
-        token: localStorage.getItem('crm_user_token')
       };
     },
     methods: {

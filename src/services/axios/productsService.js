@@ -53,7 +53,7 @@ export const deleteProduct = async (id) => {
 /**
   Se hace la request al backend para editar el producto.
 
-	@param {number} id id del producto a borrar.
+	@param {number} id id del producto a editar.
   @param {object} updatedData datos del producto modificado.
 */
 export const modifyProduct = async (id, updatedData) => {
