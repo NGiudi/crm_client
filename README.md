@@ -33,9 +33,10 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ###  Creacion de ventas
 
-- [ ] Recibir el listado de productos segun lo que se ingreso en la busqueda.
+- [X] Recibir el listado de productos según lo que se ingreso en la busqueda.
 - [ ] Validaciones de los campos.
 - [ ] Mostrar mensajes de error que devuelve el backend.
+- [ ] Reserva de stock.
 - [X] Layout del buscador de productos.
 - [X] Input para agregar el nombre del cliente.
 - [X] Almacenar los productos seleccionados en una store.

@@ -29,12 +29,17 @@
 
       <div class="mb-3">
         <label>Precio unitario</label>
-        <input v-model="data.price" class="form-control" />
+        <input class="form-control" type="number" v-model="data.price" />
+      </div>
+
+      <div class="mb-3">
+        <label>Descuento</label>
+        <input class="form-control" type="number" v-model="data.discount" />
       </div>
 
       <div class="mb-3">
         <label>Stock</label>
-        <input v-model="data.stock" class="form-control" />
+        <input class="form-control" type="number" v-model="data.stock" />
       </div>
     </div>
 
@@ -61,6 +66,16 @@
       <div class="container d-flex justify-content-between align-items-center">
         <h3>Precio</h3>
         <h3 class="color-secondary">$ {{ data.price }}</h3>
+      </div>
+
+      <div class="container d-flex justify-content-between align-items-center">
+        <h3>Descuento</h3>
+        <h3 class="color-secondary">{{ data.discount }}%</h3>
+      </div>
+
+      <div class="container d-flex justify-content-between align-items-center" v-if="data.discount > 0">
+        <h3>Precio con descuento</h3>
+        <h3 class="color-secondary">$ {{ data.price * (100 - data.discount) / 100 }}</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
