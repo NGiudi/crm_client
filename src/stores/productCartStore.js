@@ -2,9 +2,6 @@ import { defineStore, storeToRefs } from "pinia";
 
 import { useLoggedUserStore } from "./loggedUserStore";
 
-const loggedUserStore = useLoggedUserStore();
-const { user } = storeToRefs(loggedUserStore);
-
 export const useProductCartStore = defineStore("productCart", {
   state: () => {
     return {
@@ -23,7 +20,13 @@ export const useProductCartStore = defineStore("productCart", {
         this.products.push(product);
       }
     },
+    clearCart() {
+      this.$reset();
+    },
     createRequestObject() {
+      const loggedUserStore = useLoggedUserStore();
+      const { user } = storeToRefs(loggedUserStore);
+
       return {
         client: this.client,
         products: this.products.map((p) => ({

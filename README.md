@@ -31,7 +31,16 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ### [Vista] Listado de ventas.
 
-### [Vista] Vista de creacion de ventas: vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
+###  Creacion de ventas
+
+- [ ] Recibir el listado de productos segun lo que se ingreso en la busqueda.
+- [ ] Validaciones de los campos.
+- [ ] Mostrar mensajes de error que devuelve el backend.
+- [X] Layout del buscador de productos.
+- [X] Input para agregar el nombre del cliente.
+- [X] Almacenar los productos seleccionados en una store.
+
+vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
 
 ### [Logica] Formulario de edición de producto, en esta instancia podemos editar el valor del descuentos.
 

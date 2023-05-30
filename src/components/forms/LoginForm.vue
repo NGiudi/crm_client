@@ -44,8 +44,8 @@
           this.showError = true;
         } else {
           userLogin({ email: this.email, password: this.password })
-            .then((user) => {
-              loginUser(user);
+            .then((res) => {
+              loginUser(res.user);
               this.$router.push(PATHS.productsList);
             })
             .catch((err) => {

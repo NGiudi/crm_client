@@ -50,10 +50,11 @@
         setClient(e.target.value);
       },
       handleFinishSale() {
-        const { createRequestObject } = useProductCartStore();
+        const { clearCart, createRequestObject } = useProductCartStore();
         const saleObj = createRequestObject();
 
         createSale(saleObj).then((sale) => {
+          clearCart();
           this.$router.push(`${PATHS.salesList}/${sale.id}`);
         });
       },
