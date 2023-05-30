@@ -70,6 +70,14 @@ const router = createRouter({
         requiresAuth: true,
       }
     },
+    {
+      path: PATHS.usersNew,
+      name: "users-new",
+      component: () => import("../pages/users/UserNewPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },    
   ]
 });
 

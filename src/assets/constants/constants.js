@@ -13,4 +13,5 @@ export const PATHS = {
   salesNew: "/sales/new",
   usersList: "/users",
   usersDetail: "/users/:id",
+  usersNew: "/users/new",
 };

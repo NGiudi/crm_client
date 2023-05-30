@@ -12,29 +12,30 @@
         <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="mb-3">
-        <label>Producto</label>
+        <label>Nombre</label>
         <input v-model="data.name" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Marca</label>
+        <label>Apellido</label>
         <input v-model="data.brand_name" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Descripción</label>
+        <label>Teléfono</label>
         <input v-model="data.description" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Precio unitario</label>
+        <label>Rol?</label>
         <input v-model="data.price" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Stock</label>
+        <label>Estado?</label>
         <input v-model="data.stock" class="form-control" />
       </div>
+      
     </div>
 
     <div v-else>
@@ -53,8 +54,7 @@
 
       <div class="container d-flex justify-content-between align-items-center">
         <h3>Mail</h3>
-        <h3 class="color-secondary" v-if="data.email">{{ data.email }}</h3>
-        <h3 class="color-secondary" v-else>--</h3>
+        <h3 class="color-secondary">{{ data.email }}</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
@@ -66,6 +66,12 @@
         <h3>Teléfono</h3>
         <h3 class="color-secondary">{{ data.phone }}</h3>
       </div>
+
+       <div class="container d-flex justify-content-between align-items-center">
+        <h3>Estado</h3>
+        <h3 class="color-secondary" v-if="data.active">Activo</h3>
+        <h3 class="color-secondary" v-else>Inactivo</h3>
+      </div>     
     </div>
 
     <p class="mt-5 color-secondary center">
