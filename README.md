@@ -6,45 +6,42 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ## Tareas
 
-### [Vista] Crear pantalla de login.
-  Listo.
+### Login
+  - [X] Formulario de login.
+  - [X] Login automático por medio de un token.
+  - [X] Desloguear usuario.
+  - [ ] Validaciones de los formularios. - RESPONSABLE - NICOLAS
 
-### [Lógica] Logueo automático.
-  Listo.
+### Productos
+  - [X] Listado de productos con paginación.
+  - [ ] Agregar productos. - RESPONSABLE - VICTORIA
+  - [X] Eliminar productos.
+  - [X] Modal de confirmación de eliminación.
+  - [X] Editar productos.
+  - [ ] Validaciones de los formularios. - RESPONSABLE - LUCAS
 
-### [Lógca] Deslogueo de usuario.
-  Listo.
+### Usuarios - RESPONSABLE - MANUEL / JERONIMO
+- [ ] Listado de usuarios con paginación.
+- [ ] Agregar usuarios.
+- [ ] Eliminar usuario.
+- [ ] Modal de confirmación de eliminación.
+- [ ] Editar usuario.
+- [ ] Validaciones de los formularios.
 
-### [Vista] Listado de productos.
-  Listo.
+### Ventas
+  - [X] Listado de ventas.
+  - [X] Crear ventas.
+  - [X] Detalles de ventas.
+  - [ ] Validaciones de los campos. - RESPONSABLE - NICOLAS
+  - [ ] Mostrar mensajes de error. - RESPONSABLE - NICOLAS
+  - [ ] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
 
-### [Vista] Ver el detalle de los productos.
-  - Va a mostrar los datos del producto.
- 
-  - En la parte superior vamos a poner un botón para editar el contenido. Cuando se apreta se cambian los textos por inputs y te permite editar los valores.
+### Otros
+- [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
+- [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
+- [ ] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
 
-  - Vamos a tener un boton para eliminar el producto.
-
-  - Aqui vamos a poder editar el descuento del producto.
-
-### [Vista] Home: tiene un saludo personalizado con el nombre del usuario y contiene estadisticas de la empresa. Cantidad de ventas y cantidad de productos.
-
-### [Vista] Listado de ventas.
-
-###  Creacion de ventas
-
-- [X] Recibir el listado de productos según lo que se ingreso en la busqueda.
-- [ ] Validaciones de los campos.
-- [ ] Mostrar mensajes de error que devuelve el backend.
-- [ ] Reserva de stock.
-- [X] Layout del buscador de productos.
-- [X] Input para agregar el nombre del cliente.
-- [X] Almacenar los productos seleccionados en una store.
-
-vamos a tener una lista de productos con un input de cantidad y un botón de enviar compra.
-
-### [Logica] Formulario de edición de producto, en esta instancia podemos editar el valor del descuentos.
-
-### [Vista] Detalles de ventas.
-
-### [Vista] 404: Not Found.
+### Permisos
+- [ ] La sección de usuarios solo lo puede ver los administradores.
+- [ ] Los productos solo pueden ser editados y agregados por los administradores.
+- [ ] Bloquear acceso por url. redireccionar al 404.
