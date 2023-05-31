@@ -1,8 +1,7 @@
 <script setup>
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
   import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/productsService";
-  import Swal from 'sweetalert2/dist/sweetalert2.js';
-  import 'sweetalert2/dist/sweetalert2.css';
+  import { confirmDelete } from "../../helpers/sweetalert.js";
 </script>
 
 <template>
@@ -121,21 +120,7 @@
         this.isEditing = false;
       },
       confirmRemoveProduct() {
-        Swal.fire({
-          background: 'var(--color-background-inputs)',
-          color: 'white',
-          icon: 'error',
-          title: `¿Eliminar ${this.data.name}?`,
-          text: 'Esta acción no se puede deshacer',
-          showCancelButton: true,
-          confirmButtonText: 'Eliminar',
-          confirmButtonColor: "#DC3545",
-          cancelButtonText: 'Cancelar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.removeProduct();
-          }
-        });
+        confirmDelete(`¿Eliminar ${this.data.name}?`, this.removeProduct);
       },
       async removeProduct() {
         await deleteProduct(this.data.id)
