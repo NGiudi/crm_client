@@ -23,9 +23,9 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 ### Usuarios - RESPONSABLE - MANUEL / JERONIMO
 - [ ] Listado de usuarios con paginación.
 - [ ] Agregar usuarios.
-- [ ] Eliminar usuario.
-- [ ] Modal de confirmación de eliminación.
-- [ ] Editar usuario.
+- [X] Eliminar usuario.
+- [X] Modal de confirmación de eliminación.
+- [X] Editar usuario.
 - [ ] Validaciones de los formularios.
 
 ### Ventas

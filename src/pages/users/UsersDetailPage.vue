@@ -1,7 +1,7 @@
 <script setup>
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
-  import axios from "axios";
-  import { getUser } from "../../services/axios/usersService";
+  import { getUser, updateUser, deleteUser } from "../../services/axios/usersService";
+  import { confirmDelete } from "../../helpers/sweetalert.js";
 </script>
 
 <template>
@@ -13,27 +13,41 @@
       </div>
       <div class="mb-3">
         <label>Nombre</label>
-        <input v-model="data.name" class="form-control" />
+        <input v-model="data.names" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Apellido</label>
-        <input v-model="data.brand_name" class="form-control" />
+        <input v-model="data.last_name" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Teléfono</label>
-        <input v-model="data.description" class="form-control" />
+        <input v-model="data.phone" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Rol?</label>
-        <input v-model="data.price" class="form-control" />
+        <label>Rol</label>
+        <select v-model="data.role" class="form-control">
+          <option value="seller">
+            Vendedor
+          </option>
+          <option value="admin">
+            Administrador
+          </option>
+        </select>
       </div>
 
       <div class="mb-3">
-        <label>Estado?</label>
-        <input v-model="data.stock" class="form-control" />
+        <label>Estado</label>
+        <select v-model="data.active" class="form-control">
+          <option :value=true>
+            Activo
+          </option>
+          <option :value=false>
+            Inactivo
+          </option>
+        </select>
       </div>
       
     </div>
@@ -41,7 +55,7 @@
     <div v-else>
       <div class="text-end mb-3">
         <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
-        <button @click="deleteProduct" class="btn btn-danger">Eliminar</button>
+        <button @click="confirmRemoveUser" class="btn btn-danger">Eliminar</button>
       </div>
       <div class="d-flex justify-content-center mb-3">
         <h1>{{ data.name }}</h1>
@@ -104,11 +118,7 @@
       },
       editUser() {
         const updatedUser = {...this.data}
-        axios.put(`${this.url}/${this.data.id}`, updatedUser, {
-          headers: {
-            Authorization: this.token,
-          },
-        })
+        updateUser(this.data.id, updatedUser)
           .then(() => {
             console.log("usuario actualizado");
             this.isEditing = false;
@@ -117,19 +127,12 @@
             console.log(err);
           });
       },
-      deleteUser() {
-        axios.delete(`${this.url}/${this.data.id}`, {
-          headers: {
-            Authorization: this.token,
-          },
-        })
-          .then(() => {
-            console.log("Usuario borrado")
-            this.$router.push("/users");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      confirmRemoveUser() {
+        confirmDelete(`¿Eliminar ${this.data.names} ${this.data.last_name}?`, this.removeUser);
+      },
+      async removeUser() {
+        await deleteUser(this.data.id)
+        this.$router.push("/users");
       },
     },
     mounted() {

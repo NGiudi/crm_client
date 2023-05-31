@@ -35,3 +35,23 @@ export const getUser = (id) => {
   })
     .then((res) => res.data);
 };
+
+export const updateUser = (id, updatedUser) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+
+  return axiosClient.put(`/users/${id}`, updatedUser, {
+    headers: {
+     "Authorization": userToken,
+    },
+  })
+  .then((res) => res.data);
+};
+
+export const deleteUser = async (id) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+  
+  return axiosClient.delete(`/users/${id}`, {
+    headers: { "Authorization": userToken},
+  })
+    .then(() => console.log("Usuario borrado"));
+}
