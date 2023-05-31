@@ -11,6 +11,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Login automático por medio de un token.
   - [X] Desloguear usuario.
   - [ ] Validaciones de los formularios. - RESPONSABLE - NICOLAS
+  - [X] No dejar que usuarios inactivos se logueen.
 
 ### Productos
   - [X] Listado de productos con paginación.
@@ -21,12 +22,12 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [ ] Validaciones de los formularios. - RESPONSABLE - LUCAS
 
 ### Usuarios - RESPONSABLE - MANUEL / JERONIMO
-- [ ] Listado de usuarios con paginación.
-- [ ] Agregar usuarios.
-- [X] Eliminar usuario.
-- [X] Modal de confirmación de eliminación.
-- [X] Editar usuario.
-- [ ] Validaciones de los formularios.
+  - [ ] Listado de usuarios con paginación.
+  - [ ] Agregar usuarios.
+  - [X] Eliminar usuario.
+  - [X] Modal de confirmación de eliminación.
+  - [X] Editar usuario.
+  - [ ] Validaciones de los formularios.
 
 ### Ventas
   - [X] Listado de ventas.
@@ -37,11 +38,11 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [ ] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
 
 ### Otros
-- [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
-- [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
-- [ ] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
+  - [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
+  - [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
+  - [ ] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
 
 ### Permisos
-- [ ] La sección de usuarios solo lo puede ver los administradores.
-- [ ] Los productos solo pueden ser editados y agregados por los administradores.
-- [ ] Bloquear acceso por url. redireccionar al 404.
+  - [ ] La sección de usuarios solo lo puede ver los administradores.
+  - [ ] Los productos solo pueden ser editados y agregados por los administradores.
+  - [ ] Bloquear acceso por url. redireccionar al 404.

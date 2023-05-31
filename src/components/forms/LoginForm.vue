@@ -56,7 +56,7 @@
       }
     },
     mounted() {
-      const { loginUser } = useLoggedUserStore();
+      const { loginUser, logoutUser } = useLoggedUserStore();
 
       // la función se ejecuta cuando el componente se monte en el DOM.
       const userID = localStorage.getItem(LS_KEYS.userId);
@@ -72,7 +72,8 @@
           .catch((err) => {
 				    localStorage.removeItem(LS_KEYS.userId);
 				    localStorage.removeItem(LS_KEYS.userToken);
-
+            logoutUser();
+            
             console.error(err);
           });
       }
