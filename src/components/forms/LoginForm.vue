@@ -6,21 +6,32 @@
 </script>
 
 <template>
-  <form @submit.prevent="submitForm">
-    <label class="input-label mb-4">
-      Email
-      <input class="input" v-model="email" />
-    </label>
-    
-    <label class="input-label mb-2">
-      Contraseña
-      <input class="input" type="password" v-model="password" />
-    </label>
+  <form class="needs-validation" novalidate @submit.prevent="submitForm">
+    <div class="mb-2">
+      <label class="form-label">
+        Email
+      </label>
+      <input class="form-control" required type="email" v-model="email" />
+      <div class="invalid-feedback">
+        Email inválido
+      </div>
+    </div>
 
-    <div class="error mb-2">
-      <p :class="{ 'error-ocult': !showError, 'error-show' : showError }">
-        Email o contraseña inválida
-      </p>
+    <div class="mb-4">
+      <label class="form-label">
+        Contraseña  
+      </label>
+      <input class="form-control" required type="password" v-model="password" />
+      <div class="invalid-feedback">
+        Contraseña inválida
+      </div>
+    </div>
+
+    <div class="alert alert-danger d-flex align-items-center mb-4" role="alert" v-if="showError">
+      <span class=" flex-shrink-0 me-2 fas fa-exclamation-triangle"></span>
+      <div>
+        Error de inicio de sesión: fallo o falta de permisos.
+      </div>
     </div>
 
     <button class="button button-solid w-100">Iniciar sesión</button>
@@ -37,12 +48,10 @@
       };
     },
     methods: {
-      submitForm() {
+      submitForm(e) {
         const { loginUser } = useLoggedUserStore();
-
-        if (!this.email.trim() || !this.password.trim()) {
-          this.showError = true;
-        } else {
+                
+        if (e.target.checkValidity()) {
           userLogin({ email: this.email, password: this.password })
             .then((res) => {
               loginUser(res.user);
@@ -53,6 +62,8 @@
               console.error(err);
             });
         }
+
+        e.target.classList.add('was-validated');
       }
     },
     mounted() {
@@ -80,17 +91,3 @@
     },
   };
 </script>
-
-<style>
-  .error {
-    color: var(--color-text-error);
-  }
-
-  .error-ocult {
-    visibility: hidden;
-  }
-
-  .error-show {
-    visibility: visible;
-  }
-</style>
