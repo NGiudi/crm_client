@@ -27,6 +27,11 @@
       </div>
 
       <div class="mb-3">
+        <label>Mail</label>
+        <input v-model="data.email" class="form-control" />
+      </div>
+
+      <div class="mb-3">
         <label>Rol</label>
         <select v-model="data.role" class="form-control">
           <option value="seller">

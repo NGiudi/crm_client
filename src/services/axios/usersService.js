@@ -55,3 +55,14 @@ export const deleteUser = async (id) => {
   })
     .then(() => console.log("Usuario borrado"));
 }
+
+export const createUser = (newUser) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+
+  return axiosClient.post("/users/signup", newUser, {
+    headers: {
+     "Authorization": userToken,
+    },
+  })
+  .then((res) => res.data);
+}

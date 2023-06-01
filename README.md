@@ -22,8 +22,8 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [ ] Validaciones de los formularios. - RESPONSABLE - LUCAS
 
 ### Usuarios - RESPONSABLE - MANUEL / JERONIMO
-  - [ ] Listado de usuarios con paginación.
-  - [ ] Agregar usuarios.
+  - [X] Listado de usuarios con paginación.
+  - [X] Agregar usuarios.
   - [X] Eliminar usuario.
   - [X] Modal de confirmación de eliminación.
   - [X] Editar usuario.
@@ -40,7 +40,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 ### Otros
   - [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
   - [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
-  - [ ] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
+  - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
 
 ### Permisos
   - [ ] La sección de usuarios solo lo puede ver los administradores.
