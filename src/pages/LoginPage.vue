@@ -17,7 +17,7 @@
     background-color: var(--color-backgroud-components);
     border-radius: 8px;
     padding: 24px;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
   }
   
