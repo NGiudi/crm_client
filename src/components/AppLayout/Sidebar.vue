@@ -1,8 +1,4 @@
 <script setup>
-  import { useLoggedUserStore } from "../../stores/loggedUserStore";
-  
-  import { userLogout } from "../../services/axios/loginService";
-
   import { PATHS } from "../../assets/constants/constants";
 </script>
 
@@ -19,10 +15,6 @@
     <button class="layout-button" @click="handleClick" :name="PATHS.usersList">
       Usuarios
     </button>
-
-    <button class="layout-button signout" @click="logout">
-      Cerrar sesión
-    </button>
   </nav>
 </template>
 
@@ -31,15 +23,6 @@
     methods: {
       handleClick(e) {
         this.$router.push(e.target.name);
-      },
-      logout() {
-        const { logoutUser } = useLoggedUserStore();
-
-        userLogout().then(() => {
-          logoutUser();
-          this.$router.push(PATHS.login);
-        })
-        .catch((err) => console.error(err));
       }
     }
   }
@@ -53,13 +36,6 @@
     color: white;
     padding: 16px 24px;
     width: 100%;
-  }
-
-  .signout {
-    color:  var(--color-text-danger);
-  }
-  .signout:hover {
-    color: white;
   }
 
     .layout-button:hover {
