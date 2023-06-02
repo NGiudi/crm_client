@@ -10,9 +10,9 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Formulario de login.
   - [X] Login automático por medio de un token.
   - [X] Desloguear usuario.
-  - [ ] Validaciones de los formularios. - RESPONSABLE - NICOLAS
+  - [X] Validaciones de los formularios.
   - [X] No dejar que usuarios inactivos se logueen.
-  - [ ] Agregar expiración de token.
+  - [ ] Agregar expiración de token. - RESPONSABLE - NICOLAS
 
 ### Productos
   - [X] Listado de productos con paginación.
@@ -22,26 +22,26 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Editar productos.
   - [ ] Validaciones de los formularios. - RESPONSABLE - LUCAS
 
-### Usuarios - RESPONSABLE - MANUEL / JERONIMO
+### Usuarios
   - [X] Listado de usuarios con paginación.
   - [X] Agregar usuarios.
   - [X] Eliminar usuario.
   - [X] Modal de confirmación de eliminación.
   - [X] Editar usuario.
-  - [ ] Validaciones de los formularios.
+  - [ ] Validaciones de los formularios. - RESPONSABLES - MANUEL / JERONIMO
 
 ### Ventas
   - [X] Listado de ventas.
   - [X] Crear ventas.
   - [X] Detalles de ventas.
-  - [ ] Validaciones de los campos. - RESPONSABLE - NICOLAS
-  - [ ] Mostrar mensajes de error. - RESPONSABLE - NICOLAS
+  - [X] Validaciones de los campos.
+  - [X] Mostrar mensajes de error.
   - [ ] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
 
 ### Otros
   - [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
   - [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
-  - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre. - RESPONSABLE - LUCAS
+  - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre.
 
 ### Permisos
   - [ ] La sección de usuarios solo lo puede ver los administradores.

@@ -63,7 +63,7 @@
             });
         }
 
-        e.target.classList.add('was-validated');
+        e.target.classList.add("was-validated");
       }
     },
     mounted() {

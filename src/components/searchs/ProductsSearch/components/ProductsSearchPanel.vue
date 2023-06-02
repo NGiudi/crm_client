@@ -16,6 +16,7 @@
             <button
               @click="handleAddProduct(product)"
               :disabled="product.stock <= 0"
+              type="button"
             >
               Agregar
             </button>

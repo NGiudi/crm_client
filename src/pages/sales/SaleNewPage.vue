@@ -1,4 +1,6 @@
 <script setup>
+  import { storeToRefs } from "pinia";
+  
   import { useProductCartStore } from "../../stores/productCartStore";
 
   import AppLayout from '../../components/AppLayout/AppLayout.vue';
@@ -8,28 +10,53 @@
   import { createSale } from "../../services/axios/salesService";
 
   import { PATHS } from "../../assets/constants/constants";
+
+  const loggedUserStore = useProductCartStore();
+  const { client } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
   <AppLayout>
-    <label class="label">
-      Cliente
-      <input class="input" @change="handleChangeClient" />
-    </label>
+    <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
+      <div class="mb-2">
+        <label class="form-label">
+          Cliente
+        </label>
 
-    <h2 class="my-4 subtitle">
-      Productos agregados a la venta
-    </h2>
+        <input
+          @change="handleChangeClient"
+          class="form-control"
+          :defaultValue="client"
+          required
+          type="text"
+        />
+        
+        <div class="invalid-feedback">
+          Campo requerido
+        </div>
+      </div>
 
-    <ProductsSearch class="mb-3" @onAddProduct="handleAddProduct"/>
+      <h2 class="my-4 subtitle">
+        Productos agregados a la venta
+      </h2>
+      
+      <div class="alert alert-danger d-flex align-items-center mb-4" role="alert" v-if="errorMessage">
+        <span class=" flex-shrink-0 me-2 fas fa-exclamation-triangle"></span>
+        <div>
+          {{ errorMessage }}
+        </div>
+      </div>
 
-    <ProductCartList />
-
-    <div class="mt-5 text-end">
-      <button class="button button-solid" @click="handleFinishSale">
-        Finalizar venta
-      </button>
-    </div>
+      <ProductsSearch class="mb-3" @onAddProduct="handleAddProduct"/>
+  
+      <ProductCartList />
+  
+      <div class="mt-5 text-end">
+        <button class="button button-solid" type="submit">
+          Finalizar venta
+        </button>
+      </div>
+    </form>
   </AppLayout>
 </template>
 
@@ -37,6 +64,7 @@
   export default {
     data() {
       return {
+        errorMessage: null,
         productsInCart: [],
       };
     },
@@ -49,14 +77,32 @@
         const { setClient } = useProductCartStore();
         setClient(e.target.value);
       },
-      handleFinishSale() {
-        const { clearCart, createRequestObject } = useProductCartStore();
-        const saleObj = createRequestObject();
+      handleSubmit(e) {
+        if (e.target.checkValidity()) {
+          const { clearCart, createRequestObject } = useProductCartStore();
+          const saleObj = createRequestObject();
 
-        createSale(saleObj).then((sale) => {
-          clearCart();
-          this.$router.push(`${PATHS.salesList}/${sale.id}`);
-        });
+          if (saleObj.products.length !== 0) {
+            createSale(saleObj)
+              .then((sale) => {
+                this.errorMessage = null;
+
+                clearCart();
+                this.$router.push(`${PATHS.salesList}/${sale.id}`);
+              })
+              .catch((err) => {
+                const { message } = err.response.data;
+                
+                if (message === "products without stock")
+                  this.errorMessage = "No se puede concretar la venta porque hay productos que no tienen stock o tiene un valor inválido.";
+              });
+          } else {
+            this.errorMessage = "No se puede concretar la venta porque debe ingresar productos.";
+          }
+          
+        }
+
+        e.target.classList.add("was-validated");
       },
     }
   }
