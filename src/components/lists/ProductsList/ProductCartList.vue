@@ -22,16 +22,16 @@
 
     <tbody>
       <tr :key="idx" v-for="(product, idx) in products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.brand_name }}</td>
-        <td>{{ product.stock }}</td>
-        <td>{{ product.price }}</td>
+        <td class="align-middle">{{ product.name }}</td>
+        <td class="align-middle">{{ product.brand_name }}</td>
+        <td class="align-middle">{{ product.stock }}</td>
+        <td class="align-middle">{{ product.price }}</td>
         
-        <td>
-          <input type="number" v-model="product.quantity" />
+        <td class="align-middle">
+          <input class="form-control" min="1" :max="product.stock" type="number" v-model="product.quantity" />
         </td>
 
-        <td class="text-end">
+        <td class=" align-middle text-end">
           <button @click="handleDeleteProduct(product)">Eliminar</button>
         </td>
       </tr>
