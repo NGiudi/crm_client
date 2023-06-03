@@ -1,5 +1,12 @@
 <script setup>
+  import { storeToRefs } from "pinia";
+  
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+  
   import { PATHS } from "../../assets/constants/constants";
+  
+  const loggedUserStore = useLoggedUserStore();
+  const { user } = storeToRefs(loggedUserStore);  
 </script>
 
 <template>
@@ -12,7 +19,12 @@
       Ventas
     </button>
 
-    <button class="layout-button" @click="handleClick" :name="PATHS.usersList">
+    <button
+      class="layout-button"
+      @click="handleClick"
+      :name="PATHS.usersList"
+      v-if="user.role === 'admin'"
+    >
       Usuarios
     </button>
   </nav>
