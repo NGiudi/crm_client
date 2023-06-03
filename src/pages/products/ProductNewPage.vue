@@ -5,7 +5,7 @@ import { PATHS } from "../../assets/constants/constants";
 </script>
 <template>
   <AppLayout>
-    <form class="needs-validation" novalidate @submit.prevent="submitForm">
+    <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
       <div class="mb-3">
         <label>Marca</label>
         <input v-model="newProduct.brand_name" required class="form-control" />
@@ -34,7 +34,8 @@ import { PATHS } from "../../assets/constants/constants";
         <label>Precio</label>
         <input type="number" v-model="newProduct.price" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            Campo inválido
+            <spam v-if="!newProduct.price"> Campo obligatorio </spam>
+            <spam v-else> Campo inválido </spam>
         </div>
       </div>
 
@@ -42,13 +43,14 @@ import { PATHS } from "../../assets/constants/constants";
         <label>Stock</label>
         <input type="number" v-model="newProduct.stock" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            Campo inválido
+            <spam v-if="!newProduct.stock"> Campo obligatorio </spam>
+            <spam v-else> Campo inválido </spam>
         </div>
       </div>
 
       <div class="mb-3">
         <label>Descuento</label>
-        <input  v-model="newProduct.discount" min="0" max="100" class="form-control" />
+        <input  type="number" v-model="newProduct.discount" min="0" max="100" class="form-control" />
         <div class="invalid-feedback">
             Campo inválido
         </div>
@@ -74,7 +76,6 @@ import { PATHS } from "../../assets/constants/constants";
     methods: {
       handleSubmit(e){
       if (e.target.checkValidity()) {        
-        console.log(this.newProduct)
         createProduct(this.newProduct)
         .then (resp => (this.$router.push(`${PATHS.productsList}/${resp.id}`)))
       }
