@@ -20,7 +20,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Eliminar productos.
   - [X] Modal de confirmación de eliminación.
   - [X] Editar productos.
-  - [ ] Validaciones de los formularios. - RESPONSABLE - LUCAS
+  - [X] Validaciones de los formularios. - RESPONSABLE - LUCAS
 
 ### Usuarios
   - [X] Listado de usuarios con paginación.
