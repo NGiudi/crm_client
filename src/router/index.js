@@ -82,7 +82,15 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       }
-    },    
+    },
+    {
+      path: PATHS.productsNew,
+      name: "products-new",
+      component: () => import("../pages/products/ProductNewPage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },      
   ]
 });
 
