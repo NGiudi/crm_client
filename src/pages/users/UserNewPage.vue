@@ -73,8 +73,8 @@
     beforeCreate() {
       const loggedUserStore = useLoggedUserStore();
       const { user } = storeToRefs(loggedUserStore);
-    
-      if (user.role !== "admin") {
+
+      if (user.value.role !== "admin") {
         this.$router.push(PATHS.notFound);
       }
     },
@@ -89,7 +89,7 @@
         createUser(this.newUser)
         .then (resp => (this.$router.push(`${PATHS.usersList}/${resp.id}`)))
       }
-    }
+    },
   }
 </script>
 
