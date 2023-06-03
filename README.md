@@ -39,7 +39,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [ ] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
 
 ### Otros
-  - [ ] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
+  - [X] Splash screen. - RESPONSABLE - JERONIMO / LUCAS
   - [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
   - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre.
 

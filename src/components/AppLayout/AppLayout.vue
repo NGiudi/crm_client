@@ -13,6 +13,8 @@ const { user } = storeToRefs(loggedUserStore);
 <template>
   <!-- Topbar -->
   <header class="layout-topbar">
+    <img class="logo" src="../../assets/images/logo.png" alt="logo">
+
     <p class="userName" @click="toggleDropmenu">
       {{ `${user.names} ${user.last_name}` }}
       <i v-if="!dropmenuVisible" class="fas fa-caret-down"></i>
@@ -77,13 +79,19 @@ const { user } = storeToRefs(loggedUserStore);
     background-color: var(--color-backgroud-components);
     height: 56px;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .layout-wrapper {
     display: flex;
     height: calc(100vh - 56px);
   }
-
+  .logo {
+    height: 40px;
+    padding-left: 24px;
+  }
   .userName{
     user-select: none;
     cursor: pointer;

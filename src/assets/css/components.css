@@ -61,3 +61,11 @@
   width: 100%;
 }
 /* end - Text */
+
+/* start - Pagination */
+.pagination {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+}
+/* end - Pagination */
