@@ -63,3 +63,14 @@ export const modifyProduct = async (id, updatedData) => {
   })
     .then(() => console.log("Producto modificado"));
 }
+
+export const createProduct = (newProducto) => {
+  const userToken = localStorage.getItem(LS_KEYS.userToken);
+
+  return axiosClient.post("/products/new", newProducto, {
+    headers: {
+     "Authorization": userToken,
+    },
+  })
+  .then((res) => res.data);
+}
