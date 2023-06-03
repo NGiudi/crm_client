@@ -13,7 +13,11 @@ const axiosClient = axios.create({
 	@param {object} data objecto que contiene el token y el id del usuario.
 */
 export const userAuthentication = (data) => {
-	return axiosClient.post("/authentication", data)
+	const userToken = localStorage.getItem(LS_KEYS.userToken);
+
+	return axiosClient.post("/authentication", data, {
+    headers: { "Authorization": userToken},
+  })
 		.then((res) => res.data.user);
 };
 

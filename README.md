@@ -12,11 +12,11 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Desloguear usuario.
   - [X] Validaciones de los formularios.
   - [X] No dejar que usuarios inactivos se logueen.
-  - [ ] Agregar expiración de token. - RESPONSABLE - NICOLAS
+  - [X] Agregar expiración de token.
 
 ### Productos
   - [X] Listado de productos con paginación.
-  - [ ] Agregar productos. - RESPONSABLE - VICTORIA
+  - [ ] Agregar productos.
   - [X] Eliminar productos.
   - [X] Modal de confirmación de eliminación.
   - [X] Editar productos.
