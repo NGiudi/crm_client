@@ -10,31 +10,32 @@ import { PATHS } from "../../assets/constants/constants";
         <label>Marca</label>
         <input v-model="hola" class="form-control" />
       </div>
- 
+
       <div class="mb-3">
         <label>Nombre</label>
         <input v-model="newProduct.names" class="form-control" />
       </div>
+ 
+      <div class="mb-3">
+        <label>Descripcion</label>
+        <input v-model="newProduct.names" class="form-control" />
+      </div>
 
       <div class="mb-3">
-        <label>Apellido</label>
+        <label>Precio</label>
         <input v-model="newProduct.last_name" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Teléfono</label>
+        <label>Stock</label>
         <input v-model="newProduct.phone" class="form-control" />
       </div>
 
       <div class="mb-3">
-        <label>Mail</label>
-        <input v-model="newProduct.email" class="form-control" />
+        <label>Descuento</label>
+        <input v-model="newProduct.phone" class="form-control" />
       </div>
-
-      <div class="mb-3">
-        <label>Contraseña</label>
-        <input v-model="newProduct.password" class="form-control" />
-      </div>      
+ 
 
       <div class="mt-5 text-end">
         <button class="button button-solid" @click="handleSubmit">

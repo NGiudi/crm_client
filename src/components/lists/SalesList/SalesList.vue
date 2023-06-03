@@ -40,7 +40,7 @@
     </tbody>
     </table>
 
-      <!--<Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>-->
+      <Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>
 
 </template>
 
