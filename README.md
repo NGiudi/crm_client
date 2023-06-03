@@ -16,7 +16,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ### Productos
   - [X] Listado de productos con paginación.
-  - [ ] Agregar productos.
+  - [X] Agregar productos.
   - [X] Eliminar productos.
   - [X] Modal de confirmación de eliminación.
   - [X] Editar productos.
@@ -44,6 +44,6 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre.
 
 ### Permisos
-  - [ ] La sección de usuarios solo lo puede ver los administradores.
+  - [X] La sección de usuarios solo lo puede ver los administradores.
   - [ ] Los productos solo pueden ser editados y agregados por los administradores.
   - [ ] Bloquear acceso por url. redireccionar al 404.

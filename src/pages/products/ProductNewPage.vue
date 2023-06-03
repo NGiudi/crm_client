@@ -8,32 +8,32 @@ import { PATHS } from "../../assets/constants/constants";
 
       <div class="mb-3">
         <label>Marca</label>
-        <input v-model="hola" class="form-control" />
+        <input v-model="newProduct.brand_name" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Nombre</label>
-        <input v-model="newProduct.names" class="form-control" />
+        <input v-model="newProduct.name" class="form-control" />
       </div>
  
       <div class="mb-3">
         <label>Descripcion</label>
-        <input v-model="newProduct.names" class="form-control" />
+        <input v-model="newProduct.description" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Precio</label>
-        <input v-model="newProduct.last_name" class="form-control" />
+        <input type="number" v-model="newProduct.price" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Stock</label>
-        <input v-model="newProduct.phone" class="form-control" />
+        <input type="number" v-model="newProduct.stock" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Descuento</label>
-        <input v-model="newProduct.phone" class="form-control" />
+        <input  v-model="newProduct.discount" class="form-control" />
       </div>
  
 

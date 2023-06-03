@@ -23,17 +23,17 @@
 
       <div class="mb-3">
         <label>Teléfono</label>
-        <input v-model="newUser.phone" class="form-control" />
+        <input type="phone" v-model="newUser.phone" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Mail</label>
-        <input v-model="newUser.email" class="form-control" />
+        <input type="email" v-model="newUser.email" class="form-control" />
       </div>
 
       <div class="mb-3">
         <label>Contraseña</label>
-        <input v-model="newUser.password" class="form-control" />
+        <input min="4" v-model="newUser.password" class="form-control" />
       </div>      
 
       <div class="mb-3">
