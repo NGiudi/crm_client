@@ -1,7 +1,14 @@
 <script setup>
+  import { storeToRefs } from "pinia";
+
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
+  
   import { getUser, updateUser, deleteUser } from "../../services/axios/usersService";
   import { confirmDelete } from "../../helpers/sweetalert.js";
+
+  import { PATHS } from "../../assets/constants/constants";
 </script>
 
 <template>
@@ -103,6 +110,14 @@
 
 <script>
   export default {
+    beforeCreate(){
+      const loggedUserStore = useLoggedUserStore();
+      const { user } = storeToRefs(loggedUserStore);
+    
+      if (user.role !== "admin") {
+        this.$router.push(PATHS.notFound);
+      }
+    },
     data() {
       return {
         data: {},

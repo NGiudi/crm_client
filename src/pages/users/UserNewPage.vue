@@ -1,8 +1,14 @@
 <script setup>
-import AppLayout from '../../components/AppLayout/AppLayout.vue';
-import { createUser } from '../../services/axios/usersService';
-import { PATHS } from "../../assets/constants/constants";
+  import { storeToRefs } from "pinia";
+
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+
+  import AppLayout from '../../components/AppLayout/AppLayout.vue';
+  import { createUser } from '../../services/axios/usersService';
+  
+  import { PATHS } from "../../assets/constants/constants";
 </script>
+
 <template>
   <AppLayout>
       <div class="mb-3">
@@ -64,6 +70,14 @@ import { PATHS } from "../../assets/constants/constants";
 
 <script>
   export default {
+    beforeCreate() {
+      const loggedUserStore = useLoggedUserStore();
+      const { user } = storeToRefs(loggedUserStore);
+    
+      if (user.role !== "admin") {
+        this.$router.push(PATHS.notFound);
+      }
+    },
     data() {
       return {
         newUser: {},

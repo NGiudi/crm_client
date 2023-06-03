@@ -22,20 +22,19 @@
 
 <script>
   export default {
-    methods: {
-      goToNewUser() {
-        this.$router.push(PATHS.usersNew);
-      }
-    },
-    mounted() {
+    beforeCreate() {
       const loggedUserStore = useLoggedUserStore();
       const { user } = storeToRefs(loggedUserStore);
     
       if (user.role !== "admin") {
         this.$router.push(PATHS.notFound);
       }
-    }
-    
+    },
+    methods: {
+      goToNewUser() {
+        this.$router.push(PATHS.usersNew);
+      }
+    },
   }
 </script>
 
