@@ -76,7 +76,7 @@ const { user } = storeToRefs(loggedUserStore);
   }
 
   .layout-topbar {
-    background-color: var(--color-backgroud-components);
+    background: linear-gradient(0deg, var(--color-backgroud-components) 0%, var(--color-primary) 300%);
     height: 56px;
     width: 100vw;
     display: flex;
@@ -89,7 +89,7 @@ const { user } = storeToRefs(loggedUserStore);
     height: calc(100vh - 56px);
   }
   .logo {
-    height: 40px;
+    height: 30px;
     padding-left: 24px;
   }
   .userName{

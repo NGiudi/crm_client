@@ -62,6 +62,12 @@
 }
 /* end - Text */
 
+/* start - Table */
+.table {
+  margin-bottom: 60px
+}
+/* end - Table */
+
 /* start - Pagination */
 .pagination {
   position: fixed;
