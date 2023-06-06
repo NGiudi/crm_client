@@ -114,7 +114,7 @@
       const loggedUserStore = useLoggedUserStore();
       const { user } = storeToRefs(loggedUserStore);
 
-      if (user.value.role !== "admin") {
+      if (user.value.role !== "admin" && this.$route.params.id != user.value.id) {
         this.$router.push(PATHS.notFound);
       }
     },
@@ -126,6 +126,11 @@
         token: localStorage.getItem('crm_user_token')
       };
     },
+    watch: {
+      '$route.params.id'(id) {
+        this.getUser(id);
+      }
+    },    
     methods: {
       getUser(id) {
         getUser(id).then((res) => {
