@@ -4,8 +4,12 @@
   import { useLoggedUserStore } from "../../stores/loggedUserStore";
 
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
-  
+  import SalesList from "../../components/lists/SalesList/SalesList.vue";
+  import EmptyMessage from "../../components/common/EmptyMessage.vue";
+
   import { getUser, updateUser, deleteUser } from "../../services/axios/usersService";
+  import { getSales } from "../../services/axios/salesService";
+
   import { confirmDelete } from "../../helpers/sweetalert.js";
 
   import { PATHS } from "../../assets/constants/constants";
@@ -106,10 +110,21 @@
     <p class="mt-5 color-secondary center">
       Última actualización: {{ new Date(data.updated_at).toLocaleString("es-AR") }}
     </p>
+
+    <hr class="mb-4 mt-5" />
+
+    <h2 class="mb-4">Listado de ventas</h2>
+
+    <SalesList
+      @onChangePage="handleSalesPage"
+      :sales="salesList"
+      :stats="salesStats"
+      v-if="salesList.length > 0"
+    />
+
+    <EmptyMessage v-else message="El vendedor aún no ha realizado ventas." />
   </AppLayout>
 </template>
-
-
 
 <script>
   export default {
@@ -126,6 +141,8 @@
         data: {},
         isEditing: false,
         url: "http://localhost:3005/products",
+        salesList: [],
+        salesStats: {},
         token: localStorage.getItem('crm_user_token')
       };
     },
@@ -135,11 +152,24 @@
       }
     },    
     methods: {
+      getUserSales(page) {
+        const { id } = this.$router.currentRoute.value.params;
+
+        getSales({ page, seller_id: id })
+          .then((res) => {
+            this.salesList = res.sales;
+            this.salesStats = res.stats; 
+          })
+          .catch((err) => console.error(err));
+      },
       getUser(id) {
         getUser(id).then((res) => {
           this.data = res;
         })
           .catch((err) => console.error(err));
+      },
+      handleSalesPage(page) {
+        this.getUserSales(page);
       },
       handleEditClick() {
         this.isEditing = !this.isEditing;
@@ -151,9 +181,7 @@
             console.log("usuario actualizado");
             this.isEditing = false;
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => console.error(err));
       },
       confirmRemoveUser() {
         confirmDelete(`¿Eliminar ${this.data.names} ${this.data.last_name}?`, this.removeUser);
@@ -165,7 +193,9 @@
     },
     mounted() {
       const { id } = this.$route.params;
+
       this.getUser(id);
+      this.getUserSales(1);
     },
   }
 </script>

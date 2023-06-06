@@ -1,9 +1,10 @@
 <script setup>
-  import { PATHS } from '../../assets/constants/constants';
   import AppLayout from '../../components/AppLayout/AppLayout.vue';
   import SalesList from '../../components/lists/SalesList/SalesList.vue';
-
-
+  
+  import { getSales } from '../../services/axios/salesService';
+  
+  import { PATHS } from '../../assets/constants/constants';
 </script>
 
 <template>
@@ -13,27 +14,40 @@
         Nueva venta
       </button>
     </div>
-      <SalesList />
-<!--
-  usuario que realizo la venta, <br/>
-  precio total, <br/>
-  numero cliente+nombre, <br/>
-
-
-  en el detalle se ve el listado de productos
-
--->
-
-
+    
+    <SalesList @onChangePage="handleChangePage" :sales="data" :stats="stats"/>
   </AppLayout>
 </template>
 
 <script>
   export default {
+    data() {
+      return {
+        data: [],
+        stats: {},
+      };
+    },
     methods: {
+      getPage(page) {
+        const queryObj = { 
+          page: page,
+        };
+ 
+        getSales(queryObj).then((res) => {
+          this.data = res.sales;
+          this.stats = res.stats; 
+        })
+        .catch((err) => console.error(err));
+      },
       goToNewSale() {
         this.$router.push(PATHS.salesNew);
-      }
+      },
+      handleChangePage(page) {
+        this.getPage(page);
+      },
+    },
+    mounted() {
+      this.getPage(1);
     },
   }
   
