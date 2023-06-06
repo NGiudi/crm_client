@@ -11,6 +11,10 @@
 
 <template>
   <nav class="layout-sidebar">
+    <button class="layout-button" @click="handleClick" :name="PATHS.home">
+      Home
+    </button>
+  
     <button class="layout-button" @click="handleClick" :name="PATHS.productsList">
       Productos
     </button>
