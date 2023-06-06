@@ -34,8 +34,8 @@ import { PATHS } from "../../assets/constants/constants";
         <label>Precio</label>
         <input type="number" v-model="newProduct.price" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            <spam v-if="!newProduct.price"> Campo obligatorio </spam>
-            <spam v-else> Campo inválido </spam>
+            <span v-if="!newProduct.price"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
         </div>
       </div>
 
@@ -43,8 +43,8 @@ import { PATHS } from "../../assets/constants/constants";
         <label>Stock</label>
         <input type="number" v-model="newProduct.stock" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            <spam v-if="!newProduct.stock"> Campo obligatorio </spam>
-            <spam v-else> Campo inválido </spam>
+            <span v-if="!newProduct.stock"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
         </div>
       </div>
 

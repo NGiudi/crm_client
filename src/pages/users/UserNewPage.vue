@@ -32,8 +32,8 @@
         <label>Teléfono</label>
         <input type="tel" v-model="newUser.phone" required class="form-control" pattern="[0-9]*" minlength="8" maxlength="20"/>
         <div class="invalid-feedback">
-            <spam v-if="!newUser.phone"> Campo obligatorio </spam>
-            <spam v-else> Ingrese un teléfono válido </spam>
+            <span v-if="!newUser.phone"> Campo obligatorio </span>
+            <span v-else> Ingrese un teléfono válido </span>
         </div>
       </div>
 
@@ -41,8 +41,8 @@
         <label>Mail</label>
         <input type="email" v-model="newUser.email" required class="form-control" />
         <div class="invalid-feedback">
-            <spam v-if="!newUser.email"> Campo obligatorio </spam>
-            <spam v-else> Campo inválido </spam>
+            <span v-if="!newUser.email"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
         </div>
       </div>
 
@@ -50,8 +50,8 @@
         <label>Contraseña</label>
         <input minlength="6" v-model="newUser.password" required class="form-control" />
         <div class="invalid-feedback">
-            <spam v-if="!newUser.password"> Campo obligatorio </spam>
-            <spam v-else> Debe tener más de 6 caracteres </spam>
+            <span v-if="!newUser.password"> Campo obligatorio </span>
+            <span v-else> Debe tener más de 6 caracteres </span>
         </div>
       </div>      
 

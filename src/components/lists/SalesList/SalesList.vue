@@ -1,10 +1,7 @@
 <script setup>
   import Pagination from "../Pagination.vue";
 
-  import { getSales } from "../../../services/axios/salesService";
-
   import { PATHS } from "../../../assets/constants/constants";
-
 </script>
 
   <template>
@@ -12,70 +9,43 @@
     <thead>
       <tr>
         <th scope="col">Nro orden</th>
-
         <th scope="col">Vendedor</th>
-
         <th scope="col">Cliente</th>
-
         <th scope="col">Total</th>
       </tr>
     </thead>
     
-
-        <tbody>
+    <tbody>
       <tr 
         @click="handleRowClick(sale.id)" 
         :key="idx"
-        v-for="(sale, idx) in data" 
+        v-for="(sale, idx) in sales" 
       >
         <td>{{ sale.id }}</td>
-
         <td>{{ sale.user?.names + " " + sale.user?.last_name }}</td>
-
         <td>{{ sale.client }}</td>
-        
         <td>{{ sale.price }}</td>
-        
       </tr>
     </tbody>
-    </table>
+  </table>
 
-      <Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="changePage"/>
-
+  <Pagination v-if="stats.pages > 1" :pages="stats.pages" @onClick="handleChangePage"/>
 </template>
 
 
 <script>
-// TODO A MODIFICAR
   export default {
-    data() {
-      return {
-        data: [],
-        stats: {},
-      };
-    },
+    emits: ["onChangePage"],
     methods: {
-      changePage(page) {
-        this.getPage(page);
-      },
-      getPage(page) {
-        const queryObj = { 
-          page: page,
-        };
- 
-        getSales(queryObj).then((res) => {
-          this.data = res.sales;
-          this.stats = res.stats; 
-        })
-        .catch((err) => console.error(err));
+      handleChangePage(page) {
+        this.$emit("onChangePage", page);
       },
       handleRowClick(id) {
         this.$router.push(`${PATHS.salesList}/${id}`);
       },
     },
-    mounted() {
-      this.getPage(1);
-    },
+    
+    props:["sales", "stats"],
   };
 </script>
 

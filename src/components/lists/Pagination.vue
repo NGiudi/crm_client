@@ -7,7 +7,7 @@
         </button>
       </li>
       
-      <li v-for="n in pages" class="page-item">
+      <li class="page-item" :key="idx" v-for="(n, idx) in pages">
         <button
           :class="['page-link', {'active': currentPage === n }]"
           @click="handlePageClick(n)"
