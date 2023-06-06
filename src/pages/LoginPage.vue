@@ -129,6 +129,16 @@ export default {
   margin: 0 16px;
   justify-content: center;
 }
+.login-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/background.png');
+  background-size: cover;
+  filter: blur(10px) opacity(0.5);
+  z-index: -1;
+}
 
 .logo {
   height: 50px;
