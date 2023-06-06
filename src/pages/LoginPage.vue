@@ -72,7 +72,7 @@ export default {
           loginUser(res.user);
           this.toggleIsLogin();
             setTimeout(() => {
-              this.$router.push(PATHS.productsList);
+              this.$router.push(PATHS.home);
             }, 2000);
           })
           .catch((err) => {
@@ -129,6 +129,7 @@ export default {
   margin: 0 16px;
   justify-content: center;
 }
+
 .login-wrapper::before {
   content: "";
   position: absolute;

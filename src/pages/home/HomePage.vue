@@ -1,6 +1,11 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import AppLayout from '../../components/AppLayout/AppLayout.vue';
+import { useLoggedUserStore } from "../../stores/loggedUserStore";
 import 'animate.css';
+
+const loggedUserStore = useLoggedUserStore();
+const { user } = storeToRefs(loggedUserStore);  
 </script>
 
 <template>
@@ -11,21 +16,21 @@ import 'animate.css';
             <div class="card-body">
                 <h2 class="card-title">Productos</h2>
                 <p class="card-text">Listado de productos.</p>
-                <button @click="$router.push('/products')">Entrar</button>
+                <button class="button button-solid" @click="$router.push('/products')">Entrar</button>
             </div>
         </div> 
         <div class="card text-center mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Ventas</h2>
                 <p class="card-text">Listado de ventas.</p>
-                <button @click="$router.push('/sales')">Entrar</button>
+                <button class="button button-solid" @click="$router.push('/sales')">Entrar</button>
             </div>
         </div> 
-        <div class="card text-center mb-3" style="width: 18rem;">
+        <div v-if="user.role === 'admin'" class="card text-center mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Usuarios</h2>
                 <p class="card-text">Listado de usuarios.</p>
-                <button @click="$router.push('/users')">Entrar</button>
+                <button class="button button-solid" @click="$router.push('/users')">Entrar</button>
             </div>
         </div>    
     </div>  
@@ -48,5 +53,12 @@ button {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 1rem;
+}
+
+.animate__animated.animate__zoomInDown {
+  --animate-duration: 2s;
+  margin: 1rem;
+  display: block;
+  text-align: center;
 }
 </style>

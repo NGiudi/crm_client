@@ -2,6 +2,11 @@
   import AppLayout from "../../components/AppLayout/AppLayout.vue";
   import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/productsService";
   import { confirmDelete } from "../../helpers/sweetalert.js";
+  import { storeToRefs } from "pinia";
+  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+
+  const loggedUserStore = useLoggedUserStore();
+  const { user } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
@@ -43,7 +48,7 @@
     </div>
 
     <div v-else>
-      <div class="text-end mb-3">
+      <div v-if="user.role === 'admin'" class="text-end mb-3">
         <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
         <button @click="confirmRemoveProduct" class="btn btn-danger">Eliminar</button>
       </div>

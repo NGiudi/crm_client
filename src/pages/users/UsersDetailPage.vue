@@ -9,6 +9,9 @@
   import { confirmDelete } from "../../helpers/sweetalert.js";
 
   import { PATHS } from "../../assets/constants/constants";
+
+  const loggedUserStore = useLoggedUserStore();
+  const { user } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
@@ -67,7 +70,7 @@
     <div v-else>
       <div class="text-end mb-3">
         <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
-        <button @click="confirmRemoveUser" class="btn btn-danger">Eliminar</button>
+        <button v-if="user.id != this.$router.currentRoute.value.params.id" @click="confirmRemoveUser" class="btn btn-danger">Eliminar</button>
       </div>
       <div class="d-flex justify-content-center mb-3">
         <h1>{{ data.name }}</h1>
