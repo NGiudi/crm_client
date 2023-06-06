@@ -15,6 +15,14 @@ const router = createRouter({
       component: () => import("../pages/LoginPage.vue"),
     },
     {
+      path: PATHS.home,
+      name: "home",
+      component: () => import("../pages/home/HomePage.vue"),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
       path: PATHS.notFound,
       name: "not-found",
       component: () => import("../pages/common/NotFoundPage.vue"),
