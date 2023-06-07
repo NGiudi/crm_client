@@ -98,7 +98,12 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       }
-    },      
+    },
+    {
+      path: PATHS.default,
+      name: 'not-found',
+      component: () => import("../pages/common/NotFoundPage.vue"),
+    },
   ]
 });
 

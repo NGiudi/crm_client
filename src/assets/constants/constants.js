@@ -16,4 +16,5 @@ export const PATHS = {
   usersDetail: "/users/:id",
   usersNew: "/users/new",
   home: "/home",
+  default: "/:catchAll(.*)",
 };
