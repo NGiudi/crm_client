@@ -6,6 +6,9 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ## Tareas
 
+### Home
+  - [ ] Agregar estadísticas.
+
 ### Login
   - [X] Formulario de login.
   - [X] Login automático por medio de un token.
@@ -42,8 +45,15 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Splash screen.
   - [X] Pantalla de 404. - RESPONSABLE - JERONIMO
   - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre.
-
+  - [ ] Agregar avisos por mail en el backend.
+ 
 ### Permisos
   - [X] La sección de usuarios solo lo puede ver los administradores.
   - [X] Los productos solo pueden ser editados y agregados por los administradores.
   - [X] Bloquear acceso por url y redireccionar al 404.
+
+### Backend
+  - [ ] Terminar de pasar los archivos a clases.
+  - [ ] Tests.
+  - [ ] Documentar.
+  - [ ] Validaciones?

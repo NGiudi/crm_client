@@ -30,9 +30,10 @@ export const useProductCartStore = defineStore("productCart", {
       return {
         client: this.client,
         products: this.products.map((p) => ({
-          quantity: p.quantity,
+          discount: p.discount,
           price: p.price,
           product_id: p.id,
+          quantity: p.quantity,
         })),
         seller_id: user.value.id,
       };
