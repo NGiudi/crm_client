@@ -32,7 +32,12 @@
         </td>
 
         <td class=" align-middle text-end">
-          <button @click="handleDeleteProduct(product)">Eliminar</button>
+          <button class="button" 
+          @click="handleDeleteProduct(product)"
+          type="button"
+          > 
+          <i class="fas fa-trash"></i>
+          </button>
         </td>
       </tr>
     </tbody>
@@ -54,3 +59,19 @@
     props: ["list"],
   };
 </script>
+
+<style scoped>
+button {
+  font-size: 25px;
+  appearance: none;
+  background-color: transparent;
+}
+i {
+  color: var(--color-text-danger);
+  transition: .1s ease-in-out;
+}
+i:hover {
+  color: var(--color-text-error);
+
+}
+</style>

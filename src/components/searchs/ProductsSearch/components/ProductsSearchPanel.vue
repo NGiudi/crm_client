@@ -8,19 +8,19 @@
 
           <td>{{ product.brand_name }}</td>
         
-          <th>{{ product.stock }}</th>
+          <td>{{ product.stock }}</td>
 
-          <th>{{ product.price }}</th>
+          <td>{{ product.price }}</td>
           
-          <th class="text-end">
-            <button
+          <td class="text-end">
+            <button class="button"
               @click="handleAddProduct(product)"
               :disabled="product.stock <= 0"
               type="button"
             >
-              Agregar
+              <i class="fas fa-plus"></i>
             </button>
-          </th>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -52,5 +52,21 @@
     position: absolute;
     transform: translate(0, 100%);
     width: 100%;
+  }
+  button {
+  font-size: 25px;
+  appearance: none;
+  background-color: transparent;
+  }
+  i {
+    color: var(--color-primary);
+    transition: .1s ease-in-out;
+  }
+  i:hover {
+    color: var(--color-button-hover);
+
+  }
+  button:disabled i {
+    color: var(--color-text-disabled);
   }
 </style>
