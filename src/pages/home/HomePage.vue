@@ -10,11 +10,12 @@ const { user } = storeToRefs(loggedUserStore);
 
 <template>
 <AppLayout>
-    <h1 class="animate__animated animate__zoomInDown">Bienvenido!!!</h1>
+    <h1 class="animate__animated animate__zoomInDown">Bienvenido, <span>{{user.names}}</span></h1>
     <div class="container">
         <div class="card text-center mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Productos</h2>
+                <i class="fas fa-box"></i>
                 <p class="card-text">Listado de productos.</p>
                 <button class="button button-solid" @click="$router.push('/products')">Entrar</button>
             </div>
@@ -22,6 +23,7 @@ const { user } = storeToRefs(loggedUserStore);
         <div class="card text-center mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Ventas</h2>
+                <i class="fas fa-money-bill-wave"></i>
                 <p class="card-text">Listado de ventas.</p>
                 <button class="button button-solid" @click="$router.push('/sales')">Entrar</button>
             </div>
@@ -29,6 +31,7 @@ const { user } = storeToRefs(loggedUserStore);
         <div v-if="user.role === 'admin'" class="card text-center mb-3" style="width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Usuarios</h2>
+                <i class="fas fa-users"></i>
                 <p class="card-text">Listado de usuarios.</p>
                 <button class="button button-solid" @click="$router.push('/users')">Entrar</button>
             </div>
@@ -36,10 +39,6 @@ const { user } = storeToRefs(loggedUserStore);
     </div>  
 </AppLayout> 
 </template>
-
-<script>
-export default{}
-</script>
 
 <style scoped>
 .container {
@@ -55,6 +54,16 @@ button {
   margin: 1rem;
 }
 
+h1 span{
+    color: var(--color-primary);
+    font-style: italic;
+}
+
+i{
+    font-size: 90px;
+    padding: 2rem;
+    color: var(--color-primary);
+}
 .animate__animated.animate__zoomInDown {
   --animate-duration: 2s;
   margin: 1rem;

@@ -40,10 +40,10 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 
 ### Otros
   - [X] Splash screen.
-  - [ ] Pantalla de 404. - RESPONSABLE - JERONIMO
+  - [X] Pantalla de 404. - RESPONSABLE - JERONIMO
   - [X] Agregar dropdown en la topbar donde el usuario va a poder ver su perfil, cerrar sesión y su datos personales como el nombre.
 
 ### Permisos
   - [X] La sección de usuarios solo lo puede ver los administradores.
-  - [ ] Los productos solo pueden ser editados y agregados por los administradores.
+  - [X] Los productos solo pueden ser editados y agregados por los administradores.
   - [ ] Bloquear acceso por url y redireccionar al 404.
