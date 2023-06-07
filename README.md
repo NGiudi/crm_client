@@ -46,4 +46,4 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 ### Permisos
   - [X] La sección de usuarios solo lo puede ver los administradores.
   - [X] Los productos solo pueden ser editados y agregados por los administradores.
-  - [ ] Bloquear acceso por url y redireccionar al 404.
+  - [X] Bloquear acceso por url y redireccionar al 404.
