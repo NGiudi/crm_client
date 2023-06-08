@@ -2,7 +2,6 @@
 import { storeToRefs } from "pinia";
 import AppLayout from '../../components/AppLayout/AppLayout.vue';
 import { useLoggedUserStore } from "../../stores/loggedUserStore";
-import 'animate.css';
 
 const loggedUserStore = useLoggedUserStore();
 const { user } = storeToRefs(loggedUserStore);  

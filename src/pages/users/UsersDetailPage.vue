@@ -104,25 +104,26 @@
         <h3>Estado</h3>
         <h3 class="color-secondary" v-if="data.active">Activo</h3>
         <h3 class="color-secondary" v-else>Inactivo</h3>
-      </div>     
+      </div>
+
+      <p class="mt-5 color-secondary center">
+        Última actualización: {{ new Date(data.updated_at).toLocaleString("es-AR") }}
+      </p>
+  
+      <hr class="mb-4 mt-5" />
+  
+      <h2 class="mb-4">Listado de ventas</h2>
+  
+      <SalesList
+        @onChangePage="handleSalesPage"
+        :sales="salesList"
+        :stats="salesStats"
+        v-if="salesList.length > 0"
+      />
+  
+      <EmptyMessage v-else message="El vendedor aún no ha realizado ventas." />
     </div>
 
-    <p class="mt-5 color-secondary center">
-      Última actualización: {{ new Date(data.updated_at).toLocaleString("es-AR") }}
-    </p>
-
-    <hr class="mb-4 mt-5" />
-
-    <h2 class="mb-4">Listado de ventas</h2>
-
-    <SalesList
-      @onChangePage="handleSalesPage"
-      :sales="salesList"
-      :stats="salesStats"
-      v-if="salesList.length > 0"
-    />
-
-    <EmptyMessage v-else message="El vendedor aún no ha realizado ventas." />
   </AppLayout>
 </template>
 
@@ -149,6 +150,7 @@
     watch: {
       '$route.params.id'(id) {
         this.getUser(id);
+        this.getUserSales(1);
       }
     },    
     methods: {

@@ -17,11 +17,10 @@ const { user } = storeToRefs(loggedUserStore);
 
     <p class="userName" @click="toggleDropmenu">
       {{ `${user.names} ${user.last_name}` }}
-      <i v-if="!dropmenuVisible" class="fas fa-caret-down"></i>
-      <i v-else class="fas fa-caret-up"></i>
+      <i class="fas fa-caret-down rotate" :class="{ down:dropmenuVisible }"></i>
     </p>
   </header>
-  <div v-if="dropmenuVisible" class="dropmenu">
+  <div class="dropmenu" :class="{ open:dropmenuVisible }">
     <ul>
       <li @click="viewProfile">Mis datos</li>
       <li class="layout-button signout" @click="logout">Cerrar sesión</li>
@@ -32,7 +31,7 @@ const { user } = storeToRefs(loggedUserStore);
     <Sidebar />
 
     <!-- Content -->
-    <main class="layout-content">
+    <main class="layout-content animate__animated animate__fadeIn">
       <slot></slot>
     </main>
   </div>
@@ -101,17 +100,28 @@ const { user } = storeToRefs(loggedUserStore);
     text-align: end;
     font-weight: bold;
   }
+  .rotate {
+    transition: all .3s linear;
+  }
+  .rotate.down {
+    transform:rotate(180deg);
+  }
   .dropmenu {
+    height: 0;
     width: 200px;
     position: absolute;
     top: 56px;
     right: 10px;
     background-color: var(--color-backgroud-components);
+    z-index: 999;
+    transition: height 0.3s ease;
+    overflow: hidden;
+  }
+  .dropmenu.open {
+    height: 120px;
     border: 1px solid var(--color-background-inputs);
     border-top: none;
-    z-index: 999;
   }
-
   .dropmenu ul {
     text-align: center;
     list-style-type: none;
@@ -124,8 +134,8 @@ const { user } = storeToRefs(loggedUserStore);
     margin: 8px 0;
     cursor: pointer;
     padding: 8px;
+    transition: .2s ease-in-out;
   }
-
   .dropmenu li:hover {
     background-color: var(--color-button-hover);
   }
