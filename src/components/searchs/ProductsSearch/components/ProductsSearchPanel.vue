@@ -14,9 +14,10 @@
           
           <td class="text-end">
             <button class="button"
-              @click="handleAddProduct(product)"
+              @click="handleAddProduct(product, idx)"
               :disabled="product.stock <= 0"
               type="button"
+              :class="{ animate__bounceIn: clicked[idx] }"
             >
               <i class="fas fa-plus"></i>
             </button>
@@ -28,15 +29,22 @@
 </template>
 
 <script>
-  export default {
-    emits: ["onAddProduct"],
-    methods: {
-      handleAddProduct(product) {
-        this.$emit("onAddProduct", product);
-      },
+export default {
+  data() {
+    return {
+      clicked: [],
+    };
+  },
+  emits: ['onAddProduct'],
+  methods: {
+    handleAddProduct(product, idx) {
+      this.clicked[idx] = true;
+      setTimeout(() => (this.clicked[idx] = false), 300);
+      this.$emit('onAddProduct', product);
     },
-    props: ["options", "showPanel"],
-  };
+  },
+  props: ['options', 'showPanel'],
+};
 </script>
 
 <style scoped>
@@ -54,9 +62,9 @@
     width: 100%;
   }
   button {
-  font-size: 25px;
-  appearance: none;
-  background-color: transparent;
+    font-size: 25px;
+    appearance: none;
+    background-color: transparent;
   }
   i {
     color: var(--color-primary);
