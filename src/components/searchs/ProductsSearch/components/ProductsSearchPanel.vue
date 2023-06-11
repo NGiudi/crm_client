@@ -1,10 +1,10 @@
 <template>
-  <div class="panel" v-if="showPanel && options.length > 0">
-    <table class="table">
+  <div class="panel" v-if="showPanel">
+    <table class="table" v-if="options.length > 0">
       <tbody>
         <tr :key="idx" v-for="(product, idx) in options">
 
-          <td>{{ product.name }}</td>
+          <td clas=" d-flex align-items-center">{{ product.name }}</td>
 
           <td>{{ product.brand_name }}</td>
         
@@ -25,6 +25,10 @@
         </tr>
       </tbody>
     </table>
+
+    <div v-else>
+      <p class="my-4 text-center">No se han encontrado resultados</p>
+    </div>
   </div>
 </template>
 
@@ -37,9 +41,12 @@ export default {
   },
   emits: ['onAddProduct'],
   methods: {
-    handleAddProduct(product, idx) {
+    animationController(idx) {
       this.clicked[idx] = true;
       setTimeout(() => (this.clicked[idx] = false), 300);
+    },
+    handleAddProduct(product, idx) {
+      this.animationController(idx);
       this.$emit('onAddProduct', product);
     },
   },

@@ -27,7 +27,7 @@
 <script>
   export default {
     beforeUnmount() {
-      document.removeEventListener("click", this.handleClickOutside);
+      document.removeEventListener("keydown", this.handleClickOutside);
     },
     data() {
       return {
