@@ -12,7 +12,7 @@
 
   import { confirmDelete } from "../../helpers/sweetalert.js";
 
-  import { PATHS } from "../../assets/constants/constants";
+  import { PATHS, LS_KEYS } from "../../assets/constants/constants";
 
   const loggedUserStore = useLoggedUserStore();
   const { user } = storeToRefs(loggedUserStore);
@@ -197,9 +197,15 @@
       },
       editUser(e) {
         if (e.target.checkValidity()) { 
+          const userID = localStorage.getItem(LS_KEYS.userId);
+          const { updateLoggedUser } = useLoggedUserStore();
           const updatedUser = {...this.data}
           updateUser(this.data.id, updatedUser)
             .then(() => {
+              console.log(userID)
+              if(updatedUser.id == userID){
+                updateLoggedUser(updatedUser);
+              }
               console.log("usuario actualizado");
               this.isEditing = false;
             })
