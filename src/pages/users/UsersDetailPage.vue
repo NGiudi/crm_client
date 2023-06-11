@@ -20,34 +20,48 @@
 
 <template>
   <AppLayout>
-    <div v-if="isEditing">
+    <form v-if="isEditing" class="needs-validation" novalidate @submit.prevent="editUser">
       <div class="mb-3 text-end">
-        <button @click="editUser" class="btn btn-primary mx-2">Guardar</button>
+        <button class="btn btn-primary mx-2" type="submit">Guardar</button>
         <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="mb-3">
         <label>Nombre</label>
-        <input v-model="data.names" class="form-control" />
+        <input v-model="data.names" required class="form-control" />
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
       </div>
 
       <div class="mb-3">
         <label>Apellido</label>
-        <input v-model="data.last_name" class="form-control" />
+        <input v-model="data.last_name" required class="form-control" />
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
       </div>
 
       <div class="mb-3">
         <label>Teléfono</label>
-        <input v-model="data.phone" class="form-control" />
+        <input type="tel" v-model="data.phone" required class="form-control" pattern="[0-9]*" minlength="8" maxlength="20"/>
+        <div class="invalid-feedback">
+            <span v-if="!data.phone"> Campo obligatorio </span>
+            <span v-else> Ingrese un teléfono válido </span>
+        </div>
       </div>
 
       <div class="mb-3">
         <label>Mail</label>
-        <input v-model="data.email" class="form-control" />
-      </div>
+        <input type="email" v-model="data.email" required class="form-control" />
+        <div class="invalid-feedback">
+            <span v-if="!data.email"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
+        </div>
+      </div> 
 
       <div class="mb-3">
         <label>Rol</label>
-        <select v-model="data.role" class="form-control">
+        <select v-model="data.role" required class="form-control">
           <option value="seller">
             Vendedor
           </option>
@@ -55,11 +69,14 @@
             Administrador
           </option>
         </select>
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
       </div>
 
       <div class="mb-3">
         <label>Estado</label>
-        <select v-model="data.active" class="form-control">
+        <select v-model="data.active" required class="form-control">
           <option :value=true>
             Activo
           </option>
@@ -67,9 +84,11 @@
             Inactivo
           </option>
         </select>
-      </div>
-      
-    </div>
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
+      </div> 
+    </form>
 
     <div v-else>
       <div class="text-end mb-3">
@@ -176,14 +195,17 @@
       handleEditClick() {
         this.isEditing = !this.isEditing;
       },
-      editUser() {
-        const updatedUser = {...this.data}
-        updateUser(this.data.id, updatedUser)
-          .then(() => {
-            console.log("usuario actualizado");
-            this.isEditing = false;
-          })
-          .catch((err) => console.error(err));
+      editUser(e) {
+        if (e.target.checkValidity()) { 
+          const updatedUser = {...this.data}
+          updateUser(this.data.id, updatedUser)
+            .then(() => {
+              console.log("usuario actualizado");
+              this.isEditing = false;
+            })
+            .catch((err) => console.error(err));
+          }
+        e.target.classList.add("was-validated");  
       },
       confirmRemoveUser() {
         confirmDelete(`¿Eliminar ${this.data.names} ${this.data.last_name}?`, this.removeUser);

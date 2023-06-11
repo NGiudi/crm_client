@@ -11,41 +11,61 @@
 
 <template>
   <AppLayout>
-    <div v-if="isEditing">
+    <form v-if="isEditing" class="needs-validation" novalidate @submit.prevent="editProduct">
       <div class="mb-3 text-end">
-        <button @click="editProduct" class="btn btn-primary mx-2">Guardar</button>
+        <button class="btn btn-primary mx-2" type="submit">Guardar</button>  
         <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="mb-3">
-        <label>Producto</label>
-        <input v-model="data.name" class="form-control" />
-      </div>
-
-      <div class="mb-3">
         <label>Marca</label>
-        <input v-model="data.brand_name" class="form-control" />
+        <input v-model="data.brand_name" required class="form-control" />
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
       </div>
 
       <div class="mb-3">
-        <label>Descripción</label>
-        <input v-model="data.description" class="form-control" />
+        <label>Nombre</label>
+        <input v-model="data.name" required class="form-control" />
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
+      </div>
+ 
+      <div class="mb-3">
+        <label>Descripcion</label>
+        <input v-model="data.description" required class="form-control" />
+        <div class="invalid-feedback">
+            Campo obligatorio
+        </div>
       </div>
 
       <div class="mb-3">
-        <label>Precio unitario</label>
-        <input class="form-control" type="number" v-model="data.price" />
-      </div>
-
-      <div class="mb-3">
-        <label>Descuento</label>
-        <input class="form-control" type="number" v-model="data.discount" />
+        <label>Precio</label>
+        <input type="number" v-model="data.price" min="0" required class="form-control" />
+        <div class="invalid-feedback">
+            <span v-if="!data.price"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
+        </div>
       </div>
 
       <div class="mb-3">
         <label>Stock</label>
-        <input class="form-control" type="number" v-model="data.stock" />
+        <input type="number" v-model="data.stock" min="0" required class="form-control" />
+        <div class="invalid-feedback">
+            <span v-if="!data.stock"> Campo obligatorio </span>
+            <span v-else> Campo inválido </span>
+        </div>
       </div>
-    </div>
+
+      <div class="mb-3">
+        <label>Descuento</label>
+        <input  type="number" v-model="data.discount" min="0" max="100" class="form-control" />
+        <div class="invalid-feedback">
+            Campo inválido
+        </div>
+      </div>
+    </form>
 
     <div v-else>
       <div v-if="user.role === 'admin'" class="text-end mb-3">
@@ -119,10 +139,13 @@
         }
         this.isEditing = !this.isEditing;
       },
-      async editProduct() {
-        this.updatedData = {...this.data}
-        await modifyProduct(this.data.id, this.updatedData)
-        this.isEditing = false;
+      async editProduct(e) {
+        if (e.target.checkValidity()) { 
+          this.updatedData = {...this.data}
+          await modifyProduct(this.data.id, this.updatedData)
+          this.isEditing = false;
+        }
+        e.target.classList.add("was-validated");   
       },
       confirmRemoveProduct() {
         confirmDelete(`¿Eliminar ${this.data.name}?`, this.removeProduct);
