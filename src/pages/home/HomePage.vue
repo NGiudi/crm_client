@@ -15,7 +15,7 @@ const { user } = storeToRefs(loggedUserStore);
 <template>
     <AppLayout>
         <h1 class="animate__animated animate__zoomInDown">Bienvenido, <span>{{ user.names }}</span></h1>
-        <div class="container">
+        <div class="container" :class="{ menu: user.role !== 'admin' }">
             <div class="card text-center mb-3" style="width: 18rem;">
                 <div class="card-body">
                     <h2 class="card-title">Productos</h2>
@@ -112,6 +112,9 @@ export default {
 </script>
 
 <style scoped>
+.menu{
+    max-width: 850px;
+}
 .container {
     margin-top: 2rem;
     display: flex;
