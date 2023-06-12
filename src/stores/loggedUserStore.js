@@ -15,7 +15,7 @@ export const useLoggedUserStore = defineStore("loggedUser", {
     logoutUser() {
       this.$reset();
     },
-    updateLoggedUser(user){
+    updateLoggedUser(user) {
       this.user = user;
     }
   },

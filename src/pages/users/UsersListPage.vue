@@ -1,12 +1,12 @@
 <script setup>
-  import { storeToRefs } from "pinia";
+import { storeToRefs } from "pinia";
 
-  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+import { useLoggedUserStore } from "../../stores/loggedUserStore";
 
-  import AppLayout from '../../components/AppLayout/AppLayout.vue';
-  import UsersList from '../../components/lists/UsersList/UsersList.vue';
-  
-  import { PATHS } from '../../assets/constants/constants';
+import AppLayout from '../../components/AppLayout/AppLayout.vue';
+import UsersList from '../../components/lists/UsersList/UsersList.vue';
+
+import { PATHS } from '../../assets/constants/constants';
 </script>
 
 <template>
@@ -21,23 +21,21 @@
 </template>
 
 <script>
-  export default {
-    beforeCreate() {
-      const loggedUserStore = useLoggedUserStore();
-      const { user } = storeToRefs(loggedUserStore);
+export default {
+  beforeCreate() {
+    const loggedUserStore = useLoggedUserStore();
+    const { user } = storeToRefs(loggedUserStore);
 
-      if (user.value.role !== "admin") {
-        this.$router.push(PATHS.notFound);
-      }
-    },
-    methods: {
-      goToNewUser() {
-        this.$router.push(PATHS.usersNew);
-      }
-    },
-  }
+    if (user.value.role !== "admin") {
+      this.$router.push(PATHS.notFound);
+    }
+  },
+  methods: {
+    goToNewUser() {
+      this.$router.push(PATHS.usersNew);
+    }
+  },
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

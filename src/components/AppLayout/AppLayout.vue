@@ -16,6 +16,7 @@ const { user } = storeToRefs(loggedUserStore);
     <img class="logo" src="../../assets/images/logo.png" alt="logo">
 
     <p class="userName" @click="toggleDropmenu">
+      <img class="profileicon" src="../../assets/images/profile.png" alt="profile">
       {{ `${user.names} ${user.last_name}` }}
       <i class="fas fa-caret-down rotate" :class="{ down:dropmenuVisible }"></i>
     </p>
@@ -59,6 +60,7 @@ const { user } = storeToRefs(loggedUserStore);
       },
       viewProfile(){
         const userID = localStorage.getItem(LS_KEYS.userId);
+        this.toggleDropmenu();
         this.$router.push(`${PATHS.usersList}/${userID}`);
       }
     }
@@ -90,6 +92,12 @@ const { user } = storeToRefs(loggedUserStore);
   .logo {
     height: 30px;
     padding-left: 24px;
+  }
+  .profileicon{
+    max-width: 30px;
+    border-radius: 60%;
+    border: 2px solid var(--color-primary);
+    margin-right: 5px;
   }
   .userName{
     user-select: none;

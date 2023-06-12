@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import { useLoggedUserStore } from "../stores/loggedUserStore";  
+import { useLoggedUserStore } from "../stores/loggedUserStore";
 import { storeToRefs } from "pinia";
 
 import { PATHS } from "../assets/constants/constants";
@@ -113,7 +113,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!isLogged.value) {
-      next({ path: PATHS.login,  query: { redirect_url: to.fullPath } });
+      next({ path: PATHS.login, query: { redirect_url: to.fullPath } });
     } else {
       next();
     }

@@ -1,26 +1,26 @@
 <script setup>
-  import AppLayout from "../../components/AppLayout/AppLayout.vue";
-  import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/productsService";
-  import { confirmDelete } from "../../helpers/sweetalert.js";
-  import { storeToRefs } from "pinia";
-  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+import AppLayout from "../../components/AppLayout/AppLayout.vue";
+import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/productsService";
+import { confirmDelete } from "../../helpers/sweetalert.js";
+import { storeToRefs } from "pinia";
+import { useLoggedUserStore } from "../../stores/loggedUserStore";
 
-  const loggedUserStore = useLoggedUserStore();
-  const { user } = storeToRefs(loggedUserStore);
+const loggedUserStore = useLoggedUserStore();
+const { user } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
   <AppLayout>
     <form v-if="isEditing" class="needs-validation" novalidate @submit.prevent="editProduct">
       <div class="mb-3 text-end">
-        <button class="btn btn-primary mx-2" type="submit">Guardar</button>  
+        <button class="btn btn-primary mx-2" type="submit">Guardar</button>
         <button @click="handleEditClick" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="mb-3">
         <label>Marca</label>
         <input v-model="data.brand_name" required class="form-control" />
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
 
@@ -28,15 +28,15 @@
         <label>Nombre</label>
         <input v-model="data.name" required class="form-control" />
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
- 
+
       <div class="mb-3">
         <label>Descripcion</label>
         <input v-model="data.description" required class="form-control" />
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
 
@@ -44,8 +44,8 @@
         <label>Precio</label>
         <input type="number" v-model="data.price" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            <span v-if="!data.price"> Campo obligatorio </span>
-            <span v-else> Campo inválido </span>
+          <span v-if="!data.price"> Campo obligatorio </span>
+          <span v-else> Campo inválido </span>
         </div>
       </div>
 
@@ -53,16 +53,16 @@
         <label>Stock</label>
         <input type="number" v-model="data.stock" min="0" required class="form-control" />
         <div class="invalid-feedback">
-            <span v-if="!data.stock"> Campo obligatorio </span>
-            <span v-else> Campo inválido </span>
+          <span v-if="!data.stock"> Campo obligatorio </span>
+          <span v-else> Campo inválido </span>
         </div>
       </div>
 
       <div class="mb-3">
         <label>Descuento</label>
-        <input  type="number" v-model="data.discount" min="0" max="100" class="form-control" />
+        <input type="number" v-model="data.discount" min="0" max="100" class="form-control" />
         <div class="invalid-feedback">
-            Campo inválido
+          Campo inválido
         </div>
       </div>
     </form>
@@ -117,63 +117,65 @@
 
 
 <script>
-  export default {
-    data() {
-      return {
-        data: {},
-        updatedData: {},
-        isEditing: false,
-      };
+export default {
+  data() {
+    return {
+      data: {},
+      updatedData: {},
+      isEditing: false,
+    };
+  },
+  methods: {
+    getProduct(id) {
+      getProduct(id).then((res) => {
+        this.data = res;
+        this.updatedData = { ...res }
+      })
+        .catch((err) => console.error(err));
     },
-    methods: {
-      getProduct(id) {
-        getProduct(id).then((res) => {
-          this.data = res;
-          this.updatedData = {...res}
-        })
-          .catch((err) => console.error(err));
-      },
-      handleEditClick() {
-        if(this.isEditing){
-          this.data = {...this.updatedData};
-        }
-        this.isEditing = !this.isEditing;
-      },
-      async editProduct(e) {
-        if (e.target.checkValidity()) { 
-          this.updatedData = {...this.data}
-          await modifyProduct(this.data.id, this.updatedData)
-          this.isEditing = false;
-        }
-        e.target.classList.add("was-validated");   
-      },
-      confirmRemoveProduct() {
-        confirmDelete(`¿Eliminar ${this.data.name}?`, this.removeProduct);
-      },
-      async removeProduct() {
-        await deleteProduct(this.data.id)
-        this.$router.push("/products");
-      },
+    handleEditClick() {
+      if (this.isEditing) {
+        this.data = { ...this.updatedData };
+      }
+      this.isEditing = !this.isEditing;
     },
-    mounted() {
-      const { id } = this.$route.params;
-      this.getProduct(id);
+    async editProduct(e) {
+      if (e.target.checkValidity()) {
+        this.updatedData = { ...this.data }
+        await modifyProduct(this.data.id, this.updatedData)
+        this.isEditing = false;
+      }
+      e.target.classList.add("was-validated");
     },
-  }
+    confirmRemoveProduct() {
+      confirmDelete(`¿Eliminar ${this.data.name}?`, this.removeProduct);
+    },
+    async removeProduct() {
+      await deleteProduct(this.data.id)
+      this.$router.push("/products");
+    },
+  },
+  mounted() {
+    const { id } = this.$route.params;
+    this.getProduct(id);
+  },
+}
 </script>
 
 <style scoped>
-  .container{
-    max-width: 750px;
-  }
-  .btn-primary{
-    background-color: var(--color-primary);
-    border: none;
-  }
-  .color-secondary{
-    color: var(--color-secondary);
-  }
-  .center {
-    text-align: center;
-  }
-</style>
+.container {
+  max-width: 750px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border: none;
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.center {
+  text-align: center;
+}</style>

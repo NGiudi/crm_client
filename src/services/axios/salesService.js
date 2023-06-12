@@ -14,26 +14,26 @@ const axiosClient = axios.create({
 export const createSale = (saleObj) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-  return axiosClient.post("", saleObj, {
-    headers: { "Authorization": userToken},
-  })
-    .then((res) => res.data);
+	return axiosClient.post("", saleObj, {
+		headers: { "Authorization": userToken },
+	})
+		.then((res) => res.data);
 };
 
 /**
   Se hace la request al backend para obtener una página de ventas.
 
-    @param {object} queryObj objecto que contiene la página que se quiere traer.
+	@param {object} queryObj objecto que contiene la página que se quiere traer.
 */
 export const getSales = (queryObj) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
-  
-	const queryString = new  URLSearchParams(queryObj).toString();
-  
+
+	const queryString = new URLSearchParams(queryObj).toString();
+
 	return axiosClient.get(`?${queryString}`, {
-	  headers: { "Authorization": userToken},
-	})   
-	  .then((res) => res.data);
+		headers: { "Authorization": userToken },
+	})
+		.then((res) => res.data);
 };
 
 /**
@@ -43,18 +43,18 @@ export const getSales = (queryObj) => {
 */
 export const getSale = (id) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
-  
+
 	return axiosClient.get(`/${id}`, {
-	  headers: { "Authorization": userToken},
+		headers: { "Authorization": userToken },
 	})
-	  .then((res) => res.data);
+		.then((res) => res.data);
 };
 
 export const getSalesStats = () => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
-  
+
 	return axiosClient.get(`/stats`, {
-	  headers: { "Authorization": userToken},
+		headers: { "Authorization": userToken },
 	})
-	  .then((res) => res.data);
+		.then((res) => res.data);
 };

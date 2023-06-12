@@ -1,7 +1,7 @@
 <script setup>
-  import AppLayout from "../../components/AppLayout/AppLayout.vue";
-  import { getSale } from "../../services/axios/salesService";
-  import ProductsSaleList from "../../components/lists/ProductsList/ProductsSaleList.vue";
+import AppLayout from "../../components/AppLayout/AppLayout.vue";
+import { getSale } from "../../services/axios/salesService";
+import ProductsSaleList from "../../components/lists/ProductsList/ProductsSaleList.vue";
 </script>
 
 <template>
@@ -41,39 +41,41 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        data: {},
-      };
+export default {
+  data() {
+    return {
+      data: {},
+    };
+  },
+  methods: {
+    getSale(id) {
+      getSale(id).then((res) => {
+        this.data = res;
+      })
+        .catch((err) => console.error(err));
     },
-    methods: {
-      getSale(id) {
-        getSale(id).then((res) => {
-          this.data = res;
-        })
-          .catch((err) => console.error(err));
-      },
-    },
-    mounted() {
-      const { id } = this.$route.params;
-      this.getSale(id);
-    },
-  }
+  },
+  mounted() {
+    const { id } = this.$route.params;
+    this.getSale(id);
+  },
+}
 </script>
 
 <style scoped>
-  .container{
-    max-width: 750px;
-  }
-  .btn-primary{
-    background-color: var(--color-primary);
-    border: none;
-  }
-  .color-secondary{
-    color: var(--color-secondary);
-  }
-  .center {
-    text-align: center;
-  }
-</style>
+.container {
+  max-width: 750px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border: none;
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.center {
+  text-align: center;
+}</style>

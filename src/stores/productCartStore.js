@@ -14,7 +14,7 @@ export const useProductCartStore = defineStore("productCart", {
       const productInList = this.products.find((p) => p.id === product.id);
 
       if (productInList) {
-        productInList.quantity ++;
+        productInList.quantity++;
       } else {
         product.quantity = 1;
         this.products.push(product);
@@ -39,7 +39,7 @@ export const useProductCartStore = defineStore("productCart", {
       };
     },
     deleteProduct(id) {
-      this.products = this.products.filter((p) => p.id !== id); 
+      this.products = this.products.filter((p) => p.id !== id);
     },
     setClient(client) {
       this.client = client;

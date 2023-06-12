@@ -3,35 +3,35 @@ import axios from "axios";
 import { LS_KEYS } from "../../assets/constants/constants";
 
 const axiosClient = axios.create({
-	baseURL: `${import.meta.env.VITE_API_URL}`,
+  baseURL: `${import.meta.env.VITE_API_URL}`,
 });
 
 /**
   Se hace la request al backend para obtener una página de productos.
 
-	@param {object} queryObj objecto que contiene la página que se quiere traer.
+  @param {object} queryObj objecto que contiene la página que se quiere traer.
 */
 export const getProducts = (queryObj) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-  const queryString = new  URLSearchParams(queryObj).toString();
+  const queryString = new URLSearchParams(queryObj).toString();
 
-	return axiosClient.get(`/products?${queryString}`, {
-    headers: { "Authorization": userToken},
-  })   
+  return axiosClient.get(`/products?${queryString}`, {
+    headers: { "Authorization": userToken },
+  })
     .then((res) => res.data);
 };
 
 /**
   Se hace la request al backend para obtener el detalle completo del producto.
 
-	@param {number} id id del producto a buscar.
+  @param {number} id id del producto a buscar.
 */
 export const getProduct = (id) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
   return axiosClient.get(`/products/${id}`, {
-    headers: { "Authorization": userToken},
+    headers: { "Authorization": userToken },
   })
     .then((res) => res.data);
 };
@@ -39,13 +39,13 @@ export const getProduct = (id) => {
 /**
   Se hace la request al backend para borrar el producto.
 
-	@param {number} id id del producto a borrar.
+  @param {number} id id del producto a borrar.
 */
 export const deleteProduct = async (id) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
   return axiosClient.delete(`/products/${id}`, {
-    headers: { "Authorization": userToken},
+    headers: { "Authorization": userToken },
   })
     .then(() => console.log("Producto borrado"));
 }
@@ -53,13 +53,13 @@ export const deleteProduct = async (id) => {
 /**
   Se hace la request al backend para editar el producto.
 
-	@param {number} id id del producto a editar.
+  @param {number} id id del producto a editar.
   @param {object} updatedData datos del producto modificado.
 */
 export const modifyProduct = async (id, updatedData) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
   return axiosClient.put(`/products/${id}`, updatedData, {
-    headers: { "Authorization": userToken},
+    headers: { "Authorization": userToken },
   })
     .then(() => console.log("Producto modificado"));
 }
@@ -69,8 +69,8 @@ export const createProduct = (newProducto) => {
 
   return axiosClient.post("/products/new", newProducto, {
     headers: {
-     "Authorization": userToken,
+      "Authorization": userToken,
     },
   })
-  .then((res) => res.data);
+    .then((res) => res.data);
 }

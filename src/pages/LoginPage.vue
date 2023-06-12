@@ -9,7 +9,7 @@ import { LS_KEYS, PATHS } from "../assets/constants/constants";
     <div class="login-panel">
       <div class="login-title">
         <img class="logo" src="../assets/images/logo.png" alt="logo">
-        <h4>{{title}}</h4>
+        <h4>{{ title }}</h4>
       </div>
 
       <div v-if="!isLogin">
@@ -68,9 +68,9 @@ export default {
 
       if (e.target.checkValidity()) {
         userLogin({ email: this.email, password: this.password })
-        .then((res) => {
-          loginUser(res.user);
-          this.toggleIsLogin();
+          .then((res) => {
+            loginUser(res.user);
+            this.toggleIsLogin();
             setTimeout(() => {
               this.$router.push(PATHS.home);
             }, 2000);
