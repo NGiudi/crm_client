@@ -49,3 +49,12 @@ export const getSale = (id) => {
 	})
 	  .then((res) => res.data);
 };
+
+export const getSalesStats = () => {
+	const userToken = localStorage.getItem(LS_KEYS.userToken);
+  
+	return axiosClient.get(`/stats`, {
+	  headers: { "Authorization": userToken},
+	})
+	  .then((res) => res.data);
+};

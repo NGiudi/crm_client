@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import AppLayout from '../../components/AppLayout/AppLayout.vue';
 import { useLoggedUserStore } from "../../stores/loggedUserStore";
+import { getSalesStats } from "../../services/axios/salesService";
 
 const loggedUserStore = useLoggedUserStore();
 const { user } = storeToRefs(loggedUserStore);  
@@ -35,9 +36,74 @@ const { user } = storeToRefs(loggedUserStore);
                 <button class="button button-solid" @click="$router.push('/users')">Entrar</button>
             </div>
         </div>    
-    </div>  
+    </div>
+    <div class="container"> 
+         <Bar v-if="loaded"
+        id="my-chart-id"
+        :options="chartOptions"
+        :data="chartData"
+    /> 
+    </div>
+
+
 </AppLayout> 
 </template>
+    
+<script>
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
+
+export default {
+  name: 'BarChart',
+  components: { Bar },
+
+  data() {
+    return {
+        loaded: false,
+        chartData: null,
+      
+      chartOptions: {
+        responsive: true,
+        aspectRatio: 3.5,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Ventas del año',
+                padding: {
+                    top: 10,
+                    bottom: 30
+                },
+                font:{size:25},
+                color: "white",
+                position: "left"
+            }
+        }
+      },
+      
+    }
+  },
+    methods:{
+        getStats(){
+            getSalesStats().then((resp) => {
+                this.chartData = {
+                labels: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+                datasets: [ {
+                data: resp.stats,
+                backgroundColor: "#41b883"
+        } ]
+      },
+                this.loaded = true;
+            })
+        }
+    },
+    async mounted () {
+        this.loaded = false;
+        this.getStats();
+    }
+}
+</script>
 
 <style scoped>
 .container {
