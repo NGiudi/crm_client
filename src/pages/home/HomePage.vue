@@ -4,6 +4,10 @@ import AppLayout from '../../components/AppLayout/AppLayout.vue';
 import { useLoggedUserStore } from "../../stores/loggedUserStore";
 import { getSalesStats } from "../../services/axios/salesService";
 
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const loggedUserStore = useLoggedUserStore();
 const { user } = storeToRefs(loggedUserStore);  
 </script>
@@ -46,58 +50,57 @@ const { user } = storeToRefs(loggedUserStore);
 </template>
     
 <script>
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
-ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
-
 export default {
     name: 'BarChart',
     components: { Bar },
+    data() {
+        return {
+            loaded: false,
+            chartData: null,
 
-  data() {
-    return {
-        loaded: false,
-        chartData: null,
-      
-      chartOptions: {
-        responsive: true,
-        aspectRatio: 3.5,
-        plugins: {
-            title: {
-                display: true,
-                text: 'Mis ventas del año',
-                padding: {
-                    top: 10,
-                    bottom: 30
-                },
-                font: { size:25 },
-                color: "#41b883",
-                position: "left"
-            }
+            chartOptions: {
+                responsive: true,
+                aspectRatio: 3.5,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Ventas del año',
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        },
+                        font: { size: 25 },
+                        color: "#41b883",
+                        position: "left"
+                    },
+                    legend: {
+                        position: 'bottom'
+                    },
+                }
+            },
+
         }
-      },
-      
-    }
-  },
-    methods:{
-        getStats(){
+    },
+    methods: {
+        getStats() {
             const loggedUserStore = useLoggedUserStore();
             const { user } = storeToRefs(loggedUserStore);
             getSalesStats(user.value.id).then((resp) => {
                 this.chartData = {
-                labels: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
-                datasets: [ {
-                data: resp.stats.sellerSales,
-                backgroundColor: "#41b883"
+                    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    datasets: [{
+                        label: 'Mis Ventas',
+                        data: resp.stats.sellerSales,
+                        backgroundColor: "#41b883"
+                    },
+                    {
+                        label: 'Ventas Totales',
+                        data: resp.stats.sales,
+                        backgroundColor: "#35495e"
+                    }
+                    ],
                 },
-                {
-                data: resp.stats.sales,
-                backgroundColor: "#35495e"
-                } 
-                ],             
-            },
-                this.loaded = true;
+                    this.loaded = true;
             })
         }
     },
@@ -140,13 +143,13 @@ i {
 }
 
 .chart-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .chart-title {
-  font-size: 25px;
-  color: white;
+    font-size: 25px;
+    color: white;
 }
 </style>
