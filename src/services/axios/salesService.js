@@ -50,11 +50,11 @@ export const getSale = (id) => {
 	  .then((res) => res.data);
 };
 
-export const getSalesStats = () => {
+export const getSalesStats = (sellerId) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
   
-	return axiosClient.get(`/stats`, {
-	  headers: { "Authorization": userToken},
+	return axiosClient.get(`/stats?sellerId=${sellerId}`, {
+	  headers: { "Authorization": userToken },
 	})
 	  .then((res) => res.data);
 };

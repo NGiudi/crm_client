@@ -37,6 +37,9 @@ const { user } = storeToRefs(loggedUserStore);
             </div>
         </div>    
     </div>
+    <!-- <div class="chart-container">
+        <h1 class="chart-title"><span class="userColor">Mis</span> ventas del año</h1>
+    </div> -->
     <div class="container"> 
          <Bar v-if="loaded"
         id="my-chart-id"
@@ -70,13 +73,13 @@ export default {
         plugins: {
             title: {
                 display: true,
-                text: 'Ventas del año',
+                text: 'Mis ventas del año',
                 padding: {
                     top: 10,
                     bottom: 30
                 },
                 font:{size:25},
-                color: "white",
+                color: "#41b883",
                 position: "left"
             }
         }
@@ -86,14 +89,21 @@ export default {
   },
     methods:{
         getStats(){
-            getSalesStats().then((resp) => {
+            const loggedUserStore = useLoggedUserStore();
+            const { user } = storeToRefs(loggedUserStore);
+            getSalesStats(user.value.id).then((resp) => {
                 this.chartData = {
                 labels: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
                 datasets: [ {
-                data: resp.stats,
+                data: resp.stats.sellerSales,
                 backgroundColor: "#41b883"
-        } ]
-      },
+                },
+                {
+                data: resp.stats.sales,
+                backgroundColor: "#35495e"
+                } 
+                ],             
+            },
                 this.loaded = true;
             })
         }
@@ -129,10 +139,22 @@ i{
     padding: 2rem;
     color: var(--color-primary);
 }
+
 .animate__animated.animate__zoomInDown {
   --animate-duration: 2s;
   margin: 1rem;
   display: block;
   text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 25px;
+  color: white;
 }
 </style>
