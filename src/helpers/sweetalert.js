@@ -4,7 +4,7 @@ import 'sweetalert2/dist/sweetalert2.css';
 /**
   Se muestra una alerta para confirmar el borrado de un elemento.
 
-	@param {string} title titulo que se aplica al mostrar la alerta.
+    @param {string} title titulo que se aplica al mostrar la alerta.
     @param {function} remove función que elimina el elemento.
 */
 export function confirmDelete(title, remove) {

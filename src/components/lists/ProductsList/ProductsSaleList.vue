@@ -13,21 +13,18 @@
         <th scope="col">c/u</th>
       </tr>
     </thead>
-    
+
     <tbody>
-      <tr 
-        :key="idx"
-        v-for="(product, idx) in products" 
-      >
+      <tr :key="idx" v-for="(product, idx) in products">
         <td>{{ product.product.name }}</td>
 
         <td>{{ product.product.brand_name }}</td>
-        
+
         <td>{{ product.product.description }}</td>
 
         <td>{{ product.quantity }}</td>
 
-        <td>{{ "$ "+ product.price }}</td>
+        <td>{{ "$ " + product.price }}</td>
 
       </tr>
     </tbody>
@@ -35,7 +32,7 @@
 </template>
 
 <script>
-    export default {
-        props:["products"]
-    }
+export default {
+  props: ["products"]
+}
 </script>

@@ -9,47 +9,40 @@ const { user } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
-<AppLayout>
-    <h1 class="animate__animated animate__zoomInDown">Bienvenido, <span>{{user.names}}</span></h1>
-    <div class="container">
-        <div class="card text-center mb-3" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">Productos</h2>
-                <i class="fas fa-box"></i>
-                <p class="card-text">Listado de productos.</p>
-                <button class="button button-solid" @click="$router.push('/products')">Entrar</button>
+    <AppLayout>
+        <h1 class="animate__animated animate__zoomInDown">Bienvenido, <span>{{ user.names }}</span></h1>
+        <div class="container">
+            <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Productos</h2>
+                    <i class="fas fa-box"></i>
+                    <p class="card-text">Listado de productos.</p>
+                    <button class="button button-solid" @click="$router.push('/products')">Entrar</button>
+                </div>
             </div>
-        </div> 
-        <div class="card text-center mb-3" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">Ventas</h2>
-                <i class="fas fa-money-bill-wave"></i>
-                <p class="card-text">Listado de ventas.</p>
-                <button class="button button-solid" @click="$router.push('/sales')">Entrar</button>
+            <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Ventas</h2>
+                    <i class="fas fa-money-bill-wave"></i>
+                    <p class="card-text">Listado de ventas.</p>
+                    <button class="button button-solid" @click="$router.push('/sales')">Entrar</button>
+                </div>
             </div>
-        </div> 
-        <div v-if="user.role === 'admin'" class="card text-center mb-3" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">Usuarios</h2>
-                <i class="fas fa-users"></i>
-                <p class="card-text">Listado de usuarios.</p>
-                <button class="button button-solid" @click="$router.push('/users')">Entrar</button>
+            <div v-if="user.role === 'admin'" class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Usuarios</h2>
+                    <i class="fas fa-users"></i>
+                    <p class="card-text">Listado de usuarios.</p>
+                    <button class="button button-solid" @click="$router.push('/users')">Entrar</button>
+                </div>
             </div>
-        </div>    
-    </div>
-    <!-- <div class="chart-container">
-        <h1 class="chart-title"><span class="userColor">Mis</span> ventas del año</h1>
-    </div> -->
-    <div class="container"> 
-         <Bar v-if="loaded"
-        id="my-chart-id"
-        :options="chartOptions"
-        :data="chartData"
-    /> 
-    </div>
+        </div>
+        <div class="container">
+            <Bar v-if="loaded" id="my-chart-id" :options="chartOptions" :data="chartData" />
+        </div>
 
 
-</AppLayout> 
+    </AppLayout>
 </template>
     
 <script>
@@ -59,8 +52,8 @@ import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScal
 ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
 
 export default {
-  name: 'BarChart',
-  components: { Bar },
+    name: 'BarChart',
+    components: { Bar },
 
   data() {
     return {
@@ -78,7 +71,7 @@ export default {
                     top: 10,
                     bottom: 30
                 },
-                font:{size:25},
+                font: { size:25 },
                 color: "#41b883",
                 position: "left"
             }
@@ -108,7 +101,7 @@ export default {
             })
         }
     },
-    async mounted () {
+    async mounted() {
         this.loaded = false;
         this.getStats();
     }
@@ -117,34 +110,33 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 button {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
 }
 
-h1 span{
+h1 span {
     color: var(--color-primary);
     font-style: italic;
 }
 
-i{
+i {
     font-size: 90px;
     padding: 2rem;
     color: var(--color-primary);
 }
-
 .animate__animated.animate__zoomInDown {
-  --animate-duration: 2s;
-  margin: 1rem;
-  display: block;
-  text-align: center;
+    --animate-duration: 2s;
+    margin: 1rem;
+    display: block;
+    text-align: center;
 }
 
 .chart-container {

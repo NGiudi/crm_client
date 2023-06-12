@@ -1,10 +1,10 @@
 <script setup>
-  import { useProductCartStore } from '../../../stores/productCartStore';
+import { useProductCartStore } from '../../../stores/productCartStore';
 
-  import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia';
 
-  const productCartStore = useProductCartStore();
-  const { products } = storeToRefs(productCartStore);
+const productCartStore = useProductCartStore();
+const { products } = storeToRefs(productCartStore);
 </script>
 
 <template>
@@ -26,17 +26,14 @@
         <td class="align-middle">{{ product.brand_name }}</td>
         <td class="align-middle">{{ product.stock }}</td>
         <td class="align-middle">{{ product.price }}</td>
-        
+
         <td class="align-middle">
           <input class="form-control" min="1" :max="product.stock" type="number" v-model="product.quantity" />
         </td>
 
         <td class=" align-middle text-end">
-          <button class="button" 
-          @click="handleDeleteProduct(product)"
-          type="button"
-          > 
-          <i class="fas fa-trash"></i>
+          <button class="button" @click="handleDeleteProduct(product)" type="button">
+            <i class="fas fa-trash"></i>
           </button>
         </td>
       </tr>
@@ -45,19 +42,19 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-      };
+export default {
+  data() {
+    return {
+    };
+  },
+  methods: {
+    handleDeleteProduct(product) {
+      const { deleteProduct } = useProductCartStore();
+      deleteProduct(product.id);
     },
-    methods: {
-      handleDeleteProduct(product) {
-        const { deleteProduct } = useProductCartStore();
-        deleteProduct(product.id);
-      },
-    },
-    props: ["list"],
-  };
+  },
+  props: ["list"],
+};
 </script>
 
 <style scoped>
@@ -66,10 +63,12 @@ button {
   appearance: none;
   background-color: transparent;
 }
+
 i {
   color: var(--color-text-danger);
   transition: .1s ease-in-out;
 }
+
 i:hover {
   color: var(--color-text-error);
 

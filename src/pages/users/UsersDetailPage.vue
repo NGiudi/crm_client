@@ -1,21 +1,21 @@
 <script setup>
-  import { storeToRefs } from "pinia";
+import { storeToRefs } from "pinia";
 
-  import { useLoggedUserStore } from "../../stores/loggedUserStore";
+import { useLoggedUserStore } from "../../stores/loggedUserStore";
 
-  import AppLayout from "../../components/AppLayout/AppLayout.vue";
-  import SalesList from "../../components/lists/SalesList/SalesList.vue";
-  import EmptyMessage from "../../components/common/EmptyMessage.vue";
+import AppLayout from "../../components/AppLayout/AppLayout.vue";
+import SalesList from "../../components/lists/SalesList/SalesList.vue";
+import EmptyMessage from "../../components/common/EmptyMessage.vue";
 
-  import { getUser, updateUser, deleteUser } from "../../services/axios/usersService";
-  import { getSales } from "../../services/axios/salesService";
+import { getUser, updateUser, deleteUser } from "../../services/axios/usersService";
+import { getSales } from "../../services/axios/salesService";
 
-  import { confirmDelete } from "../../helpers/sweetalert.js";
+import { confirmDelete } from "../../helpers/sweetalert.js";
 
-  import { PATHS, LS_KEYS } from "../../assets/constants/constants";
+import { PATHS, LS_KEYS } from "../../assets/constants/constants";
 
-  const loggedUserStore = useLoggedUserStore();
-  const { user } = storeToRefs(loggedUserStore);
+const loggedUserStore = useLoggedUserStore();
+const { user } = storeToRefs(loggedUserStore);
 </script>
 
 <template>
@@ -29,7 +29,7 @@
         <label>Nombre</label>
         <input v-model="data.names" required class="form-control" />
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
 
@@ -37,16 +37,17 @@
         <label>Apellido</label>
         <input v-model="data.last_name" required class="form-control" />
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
 
       <div class="mb-3">
         <label>Teléfono</label>
-        <input type="tel" v-model="data.phone" required class="form-control" pattern="[0-9]*" minlength="8" maxlength="20"/>
+        <input type="tel" v-model="data.phone" required class="form-control" pattern="[0-9]*" minlength="8"
+          maxlength="20" />
         <div class="invalid-feedback">
-            <span v-if="!data.phone"> Campo obligatorio </span>
-            <span v-else> Ingrese un teléfono válido </span>
+          <span v-if="!data.phone"> Campo obligatorio </span>
+          <span v-else> Ingrese un teléfono válido </span>
         </div>
       </div>
 
@@ -54,10 +55,10 @@
         <label>Mail</label>
         <input type="email" v-model="data.email" required class="form-control" />
         <div class="invalid-feedback">
-            <span v-if="!data.email"> Campo obligatorio </span>
-            <span v-else> Campo inválido </span>
+          <span v-if="!data.email"> Campo obligatorio </span>
+          <span v-else> Campo inválido </span>
         </div>
-      </div> 
+      </div>
 
       <div class="mb-3">
         <label>Rol</label>
@@ -70,7 +71,7 @@
           </option>
         </select>
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
       </div>
 
@@ -85,15 +86,16 @@
           </option>
         </select>
         <div class="invalid-feedback">
-            Campo obligatorio
+          Campo obligatorio
         </div>
-      </div> 
+      </div>
     </form>
 
     <div v-else>
       <div class="text-end mb-3">
         <button @click="handleEditClick" class="btn btn-primary mx-2">Editar</button>
-        <button v-if="user.id != this.$router.currentRoute.value.params.id" @click="confirmRemoveUser" class="btn btn-danger">Eliminar</button>
+        <button v-if="user.id != this.$router.currentRoute.value.params.id" @click="confirmRemoveUser"
+          class="btn btn-danger">Eliminar</button>
       </div>
       <div class="d-flex justify-content-center mb-3">
         <h1>{{ data.name }}</h1>
@@ -101,7 +103,7 @@
 
       <div class="container d-flex justify-content-between align-items-center">
         <h3>Nombre completo</h3>
-        <h3 class="color-secondary">{{ data.names +" "+ data.last_name}}</h3>
+        <h3 class="color-secondary">{{ data.names + " " + data.last_name }}</h3>
       </div>
 
       <div class="container d-flex justify-content-between align-items-center">
@@ -119,7 +121,7 @@
         <h3 class="color-secondary">{{ data.phone }}</h3>
       </div>
 
-       <div class="container d-flex justify-content-between align-items-center">
+      <div class="container d-flex justify-content-between align-items-center">
         <h3>Estado</h3>
         <h3 class="color-secondary" v-if="data.active">Activo</h3>
         <h3 class="color-secondary" v-else>Inactivo</h3>
@@ -128,18 +130,13 @@
       <p class="mt-5 color-secondary center">
         Última actualización: {{ new Date(data.updated_at).toLocaleString("es-AR") }}
       </p>
-  
+
       <hr class="mb-4 mt-5" />
-  
+
       <h2 class="mb-4">Listado de ventas</h2>
-  
-      <SalesList
-        @onChangePage="handleSalesPage"
-        :sales="salesList"
-        :stats="salesStats"
-        v-if="salesList.length > 0"
-      />
-  
+
+      <SalesList @onChangePage="handleSalesPage" :sales="salesList" :stats="salesStats" v-if="salesList.length > 0" />
+
       <EmptyMessage v-else message="El vendedor aún no ha realizado ventas." />
     </div>
 
@@ -147,101 +144,104 @@
 </template>
 
 <script>
-  export default {
-    beforeCreate() {
-      const loggedUserStore = useLoggedUserStore();
-      const { user } = storeToRefs(loggedUserStore);
+export default {
+  beforeCreate() {
+    const loggedUserStore = useLoggedUserStore();
+    const { user } = storeToRefs(loggedUserStore);
 
-      if (user.value.role !== "admin" && this.$route.params.id != user.value.id) {
-        this.$router.push(PATHS.notFound);
-      }
-    },
-    data() {
-      return {
-        data: {},
-        isEditing: false,
-        url: "http://localhost:3005/products",
-        salesList: [],
-        salesStats: {},
-        token: localStorage.getItem('crm_user_token')
-      };
-    },
-    watch: {
-      '$route.params.id'(id) {
-        this.getUser(id);
-        this.getUserSales(1);
-      }
-    },    
-    methods: {
-      getUserSales(page) {
-        const { id } = this.$router.currentRoute.value.params;
-
-        getSales({ page, seller_id: id })
-          .then((res) => {
-            this.salesList = res.sales;
-            this.salesStats = res.stats; 
-          })
-          .catch((err) => console.error(err));
-      },
-      getUser(id) {
-        getUser(id).then((res) => {
-          this.data = res;
-        })
-          .catch((err) => console.error(err));
-      },
-      handleSalesPage(page) {
-        this.getUserSales(page);
-      },
-      handleEditClick() {
-        this.isEditing = !this.isEditing;
-      },
-      editUser(e) {
-        if (e.target.checkValidity()) { 
-          const userID = localStorage.getItem(LS_KEYS.userId);
-          const { updateLoggedUser } = useLoggedUserStore();
-          const updatedUser = {...this.data}
-          updateUser(this.data.id, updatedUser)
-            .then(() => {
-              console.log(userID)
-              if(updatedUser.id == userID){
-                updateLoggedUser(updatedUser);
-              }
-              console.log("usuario actualizado");
-              this.isEditing = false;
-            })
-            .catch((err) => console.error(err));
-          }
-        e.target.classList.add("was-validated");  
-      },
-      confirmRemoveUser() {
-        confirmDelete(`¿Eliminar ${this.data.names} ${this.data.last_name}?`, this.removeUser);
-      },
-      async removeUser() {
-        await deleteUser(this.data.id)
-        this.$router.push("/users");
-      },
-    },
-    mounted() {
-      const { id } = this.$route.params;
-
+    if (user.value.role !== "admin" && this.$route.params.id != user.value.id) {
+      this.$router.push(PATHS.notFound);
+    }
+  },
+  data() {
+    return {
+      data: {},
+      isEditing: false,
+      url: "http://localhost:3005/products",
+      salesList: [],
+      salesStats: {},
+      token: localStorage.getItem('crm_user_token')
+    };
+  },
+  watch: {
+    '$route.params.id'(id) {
       this.getUser(id);
       this.getUserSales(1);
+    }
+  },
+  methods: {
+    getUserSales(page) {
+      const { id } = this.$router.currentRoute.value.params;
+
+      getSales({ page, seller_id: id })
+        .then((res) => {
+          this.salesList = res.sales;
+          this.salesStats = res.stats;
+        })
+        .catch((err) => console.error(err));
     },
-  }
+    getUser(id) {
+      getUser(id).then((res) => {
+        this.data = res;
+      })
+        .catch((err) => console.error(err));
+    },
+    handleSalesPage(page) {
+      this.getUserSales(page);
+    },
+    handleEditClick() {
+      this.isEditing = !this.isEditing;
+    },
+    editUser(e) {
+      if (e.target.checkValidity()) {
+        const userID = localStorage.getItem(LS_KEYS.userId);
+        const { updateLoggedUser } = useLoggedUserStore();
+        const updatedUser = { ...this.data }
+        updateUser(this.data.id, updatedUser)
+          .then(() => {
+            console.log(userID)
+            if (updatedUser.id == userID) {
+              updateLoggedUser(updatedUser);
+            }
+            console.log("usuario actualizado");
+            this.isEditing = false;
+          })
+          .catch((err) => console.error(err));
+      }
+      e.target.classList.add("was-validated");
+    },
+    confirmRemoveUser() {
+      confirmDelete(`¿Eliminar ${this.data.names} ${this.data.last_name}?`, this.removeUser);
+    },
+    async removeUser() {
+      await deleteUser(this.data.id)
+      this.$router.push("/users");
+    },
+  },
+  mounted() {
+    const { id } = this.$route.params;
+
+    this.getUser(id);
+    this.getUserSales(1);
+  },
+}
 </script>
 
 <style scoped>
-  .container{
-    max-width: 750px;
-  }
-  .btn-primary{
-    background-color: var(--color-primary);
-    border: none;
-  }
-  .color-secondary{
-    color: var(--color-secondary);
-  }
-  .center {
-    text-align: center;
-  }
+.container {
+  max-width: 750px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border: none;
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.center {
+  text-align: center;
+}
 </style>

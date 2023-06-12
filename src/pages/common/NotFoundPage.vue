@@ -6,39 +6,37 @@ import 'animate.css';
 </script>
 
 <template>
-
   <body>
 
-	<div id="notfound">
-		<div class="notfound">
-			<div class="notfound-404">
-				<h1>404</h1>
-				<h2>No disponible</h2>
-			</div>
-			<button @click="handleClick" :name="PATHS.home">
-         Inicio
-      </button>
-		</div>
-	</div>
+    <div id="notfound">
+      <div class="notfound">
+        <div class="notfound-404">
+          <h1>404</h1>
+          <h2>No disponible</h2>
+        </div>
+        <button @click="handleClick" :name="PATHS.home">
+          Inicio
+        </button>
+      </div>
+    </div>
 
-</body>
-  
+  </body>
 </template>
 
 <script>
-  export default {
-    methods: {
-      handleClick(e) {
-        this.$router.push(e.target.name);
-      }
+export default {
+  methods: {
+    handleClick(e) {
+      this.$router.push(e.target.name);
     }
   }
+}
 </script>
 
 <style scoped>
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -57,8 +55,8 @@ body {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .notfound {
@@ -131,14 +129,14 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-    .notfound .notfound-404 h2 {
-        font-size: 24px;
-    }
+  .notfound .notfound-404 h2 {
+    font-size: 24px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .notfound .notfound-404 h1 {
-      font-size: 182px;
+    font-size: 182px;
   }
 }
 </style>

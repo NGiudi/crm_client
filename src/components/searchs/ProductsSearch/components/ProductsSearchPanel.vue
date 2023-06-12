@@ -7,18 +7,14 @@
           <td clas=" d-flex align-items-center">{{ product.name }}</td>
 
           <td>{{ product.brand_name }}</td>
-        
+
           <td>{{ product.stock }}</td>
 
           <td>{{ product.price }}</td>
-          
+
           <td class="text-end">
-            <button class="button"
-              @click="handleAddProduct(product, idx)"
-              :disabled="product.stock <= 0"
-              type="button"
-              :class="{ animate__bounceIn: clicked[idx] }"
-            >
+            <button class="button" @click="handleAddProduct(product, idx)" :disabled="product.stock <= 0" type="button"
+              :class="{ animate__bounceIn: clicked[idx] }">
               <i class="fas fa-plus"></i>
             </button>
           </td>
@@ -55,33 +51,37 @@ export default {
 </script>
 
 <style scoped>
-  .panel {
-    background-color: var(--color-background-inputs);
-    border-radius: 2px;
-    bottom: -8px;
-    box-sizing: border-box;
-    left: 0;
-    max-height: 250px;
-    overflow: auto;
-    padding: 10px;
-    position: absolute;
-    transform: translate(0, 100%);
-    width: 100%;
-  }
-  button {
-    font-size: 25px;
-    appearance: none;
-    background-color: transparent;
-  }
-  i {
-    color: var(--color-primary);
-    transition: .1s ease-in-out;
-  }
-  i:hover {
-    color: var(--color-button-hover);
+.panel {
+  background-color: var(--color-background-inputs);
+  border-radius: 2px;
+  bottom: -8px;
+  box-sizing: border-box;
+  left: 0;
+  max-height: 250px;
+  overflow: auto;
+  padding: 10px;
+  position: absolute;
+  transform: translate(0, 100%);
+  width: 100%;
+}
 
-  }
-  button:disabled i {
-    color: var(--color-text-disabled);
-  }
+button {
+  font-size: 25px;
+  appearance: none;
+  background-color: transparent;
+}
+
+i {
+  color: var(--color-primary);
+  transition: .1s ease-in-out;
+}
+
+i:hover {
+  color: var(--color-button-hover);
+
+}
+
+button:disabled i {
+  color: var(--color-text-disabled);
+}
 </style>

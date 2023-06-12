@@ -3,7 +3,7 @@ import axios from "axios";
 import { LS_KEYS } from "../../assets/constants/constants";
 
 const axiosClient = axios.create({
-	baseURL: `${import.meta.env.VITE_API_URL}/users`, 
+	baseURL: `${import.meta.env.VITE_API_URL}/users`,
 });
 
 /**
@@ -16,8 +16,8 @@ export const userAuthentication = (data) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
 
 	return axiosClient.post("/authentication", data, {
-    headers: { "Authorization": userToken},
-  })
+		headers: { "Authorization": userToken },
+	})
 		.then((res) => res.data.user);
 };
 
