@@ -60,7 +60,7 @@ const { user } = storeToRefs(loggedUserStore);
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-3" v-if="user.role == 'admin'">
         <label>Rol</label>
         <select v-model="data.role" required class="form-control">
           <option value="seller">
