@@ -4,6 +4,7 @@ import { getProduct, deleteProduct, modifyProduct } from "../../services/axios/p
 import { confirmDelete } from "../../helpers/sweetalert.js";
 import { storeToRefs } from "pinia";
 import { useLoggedUserStore } from "../../stores/loggedUserStore";
+import lodash from "lodash";
 
 const loggedUserStore = useLoggedUserStore();
 const { user } = storeToRefs(loggedUserStore);
@@ -60,7 +61,7 @@ const { user } = storeToRefs(loggedUserStore);
 
       <div class="mb-3">
         <label>Descuento</label>
-        <input type="number" v-model="data.discount" min="0" max="100" class="form-control" />
+        <input type="number" v-model="data.discount" defaultValue="0" min="0" max="100" class="form-control" />
         <div class="invalid-feedback">
           Campo inválido
         </div>
@@ -142,7 +143,8 @@ export default {
     async editProduct(e) {
       if (e.target.checkValidity()) {
         this.updatedData = { ...this.data }
-        await modifyProduct(this.data.id, this.updatedData)
+        const product = lodash.pick(this.updatedData, ["brand_name", "description", "discount", "name", "price", "stock"])
+        await modifyProduct(this.data.id, product)
         this.isEditing = false;
       }
       e.target.classList.add("was-validated");

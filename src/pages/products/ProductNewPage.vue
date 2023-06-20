@@ -50,7 +50,7 @@ import { PATHS } from "../../assets/constants/constants";
 
       <div class="mb-3">
         <label>Descuento</label>
-        <input type="number" v-model="newProduct.discount" min="0" max="100" class="form-control" />
+        <input type="number" v-model="newProduct.discount" defaultValue="0" min="0" max="100" class="form-control" />
         <div class="invalid-feedback">
           Campo inválido
         </div>
