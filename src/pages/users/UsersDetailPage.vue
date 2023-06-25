@@ -13,6 +13,7 @@ import { getSales } from "../../services/axios/salesService";
 import { confirmDelete } from "../../helpers/sweetalert.js";
 
 import { PATHS, LS_KEYS } from "../../assets/constants/constants";
+import lodash from 'lodash';
 
 const loggedUserStore = useLoggedUserStore();
 const { user } = storeToRefs(loggedUserStore);
@@ -197,7 +198,8 @@ export default {
         const userID = localStorage.getItem(LS_KEYS.userId);
         const { updateLoggedUser } = useLoggedUserStore();
         const updatedUser = { ...this.data }
-        updateUser(this.data.id, updatedUser)
+        const user = lodash.pick(updatedUser, ["active", "email", "last_name", "names", "phone", "role"])
+        updateUser(this.data.id, user)
           .then(() => {
             console.log(userID)
             if (updatedUser.id == userID) {
