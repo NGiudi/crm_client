@@ -7,7 +7,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
 ## Tareas
 
 ### Home
-  - [ ] Agregar estadísticas.
+  - [X] Agregar estadísticas.
 
 ### Login
   - [X] Formulario de login.
@@ -39,7 +39,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Detalles de ventas.
   - [X] Validaciones de los campos.
   - [X] Mostrar mensajes de error.
-  - [ ] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
+  - [X] Agregar lógica de descuento. - RESPONSABLE - NICOLAS
 
 ### Otros
   - [X] Splash screen.
@@ -53,7 +53,7 @@ Crear una aplicación donde los empleados de una distribuidora de lentes de cont
   - [X] Bloquear acceso por url y redireccionar al 404.
 
 ### Backend
-  - [ ] Terminar de pasar los archivos a clases.
-  - [ ] Tests.
-  - [ ] Documentar.
-  - [ ] Validaciones?
+  - [X] Terminar de pasar los archivos a clases.
+  - [X] Tests.
+  - [X] Documentar.
+  - [X] Validaciones?
