@@ -11,13 +11,13 @@ const axiosClient = axios.create({
 
 	@param {number} id id del producto a buscar.
 */
-export const createSale = (saleObj) => {
+export const createSale = async (saleObj) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-	return axiosClient.post("", saleObj, {
+	const res = await axiosClient.post("", saleObj, {
 		headers: { "Authorization": userToken },
 	})
-		.then((res) => res.data);
+	return res.data;
 };
 
 /**
@@ -25,15 +25,15 @@ export const createSale = (saleObj) => {
 
 	@param {object} queryObj objecto que contiene la página que se quiere traer.
 */
-export const getSales = (queryObj) => {
+export const getSales = async (queryObj) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
 
 	const queryString = new URLSearchParams(queryObj).toString();
 
-	return axiosClient.get(`?${queryString}`, {
+	const res = await axiosClient.get(`?${queryString}`, {
 		headers: { "Authorization": userToken },
 	})
-		.then((res) => res.data);
+	return res.data;
 };
 
 /**
@@ -41,20 +41,20 @@ export const getSales = (queryObj) => {
 
 	@param {number} id id del producto a buscar.
 */
-export const getSale = (id) => {
+export const getSale = async (id) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-	return axiosClient.get(`/${id}`, {
+	const res = await axiosClient.get(`/${id}`, {
 		headers: { "Authorization": userToken },
 	})
-		.then((res) => res.data);
+	return res.data
 };
 
-export const getSalesStats = (sellerId) => {
+export const getSalesStats = async (sellerId) => {
 	const userToken = localStorage.getItem(LS_KEYS.userToken);
   
-	return axiosClient.get(`/stats?sellerId=${sellerId}`, {
-	  headers: { "Authorization": userToken },
-	})
-		.then((res) => res.data);
+	const res = await axiosClient.get(`/stats?sellerId=${sellerId}`, {
+		headers: { "Authorization": userToken },
+	  })
+	return res.data;
 };

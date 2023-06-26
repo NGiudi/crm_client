@@ -11,15 +11,15 @@ const axiosClient = axios.create({
 
   @param {object} queryObj objecto que contiene la página que se quiere traer.
 */
-export const getProducts = (queryObj) => {
+export const getProducts = async (queryObj) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
   const queryString = new URLSearchParams(queryObj).toString();
 
-  return axiosClient.get(`/products?${queryString}`, {
+  const res = await axiosClient.get(`/products?${queryString}`, {
     headers: { "Authorization": userToken },
   })
-    .then((res) => res.data);
+  return res.data;
 };
 
 /**
@@ -27,13 +27,13 @@ export const getProducts = (queryObj) => {
 
   @param {number} id id del producto a buscar.
 */
-export const getProduct = (id) => {
+export const getProduct = async (id) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-  return axiosClient.get(`/products/${id}`, {
+  const res = await axiosClient.get(`/products/${id}`, {
     headers: { "Authorization": userToken },
   })
-    .then((res) => res.data);
+  return res.data;
 };
 
 /**
@@ -44,10 +44,10 @@ export const getProduct = (id) => {
 export const deleteProduct = async (id) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-  return axiosClient.delete(`/products/${id}`, {
+  const res = await axiosClient.delete(`/products/${id}`, {
     headers: { "Authorization": userToken },
   })
-    .then(() => console.log("Producto borrado"));
+  return res;
 }
 
 /**
@@ -58,19 +58,20 @@ export const deleteProduct = async (id) => {
 */
 export const modifyProduct = async (id, updatedData) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
-  return axiosClient.put(`/products/${id}`, updatedData, {
+
+  const res = await axiosClient.put(`/products/${id}`, updatedData, {
     headers: { "Authorization": userToken },
   })
-    .then(() => console.log("Producto modificado"));
+  return res;
 }
 
-export const createProduct = (newProducto) => {
+export const createProduct = async (newProducto) => {
   const userToken = localStorage.getItem(LS_KEYS.userToken);
 
-  return axiosClient.post("/products/new", newProducto, {
+  const res = await axiosClient.post("/products/new", newProducto, {
     headers: {
       "Authorization": userToken,
     },
   })
-    .then((res) => res.data);
+  return res.data;
 }

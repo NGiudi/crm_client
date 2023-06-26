@@ -24,3 +24,21 @@ export function confirmDelete(title, remove) {
         }
     });
 }
+
+export function creatingUser() {
+    let timerInterval
+    Swal.fire({
+        background: 'var(--color-background-inputs)',
+        color: 'white',
+        icon: 'success',
+        title: 'Creando usuario...',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    })
+}
